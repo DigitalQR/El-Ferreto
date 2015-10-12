@@ -50,6 +50,7 @@ public class movement : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision_object) {
         //If the player is touching buildings, it will be classed as on the ground
         if (collision_object.gameObject.tag == "building") {
+
             touching_ground = true;
             Debug.Log("Grounded");
         }
