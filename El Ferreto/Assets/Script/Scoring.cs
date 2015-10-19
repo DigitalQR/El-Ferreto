@@ -19,7 +19,11 @@ public class Scoring : MonoBehaviour
     {
         distanceTravelled += (transform.position.x - lastPosition);
         lastPosition = transform.position.x;
-		DistRound = Mathf.RoundToInt (distanceTravelled);
+		int score = Mathf.RoundToInt (distanceTravelled);
+
+        if (score > DistRound) {
+            DistRound = score;
+        }
 
     }
 
