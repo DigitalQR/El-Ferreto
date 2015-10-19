@@ -5,6 +5,7 @@ using System;
 public class movement : MonoBehaviour {
 
     private Rigidbody2D body;
+	private Animator anim;
     //Stores last y accelerometer states where 0 is the current state
     private float[] jump_state = new float[10];
 
@@ -20,6 +21,7 @@ public class movement : MonoBehaviour {
     {
         GetComponent<Rigidbody2D>().freezeRotation = true;
         body = GetComponent<Rigidbody2D>();
+		anim = gameObject.GetComponent<Animator> ();
     }
 
     void Update () 
@@ -44,6 +46,47 @@ public class movement : MonoBehaviour {
         }
 
         body.velocity += (movement * Time.deltaTime * speed);
+
+		// setting ground condition for Animator
+		anim.SetBool ("ground", touching_ground);
+
+		// setting speed condition for Animator
+		if (keyboard_controlled) {
+			anim.SetFloat ("speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
+		} 
+		else 
+		{
+			anim.SetFloat ("speed", Input.acceleration.x);
+		}
+
+		// sprite faces right if moving forward
+		if (keyboard_controlled) 
+		{
+			if (Input.GetAxis ("Horizontal") > 0.1f) {
+				transform.localScale = new Vector3 (1, 1, 1);
+			}
+		} 
+		else 
+		{
+			if(Input.acceleration.x > 0.1f)
+			{
+				transform.localScale = new Vector3 (1, 1, 1);
+			}
+		}
+		// sprite faces left if moving back
+		if (keyboard_controlled) 
+		{
+			if (Input.GetAxis ("Horizontal") > 0.1f) {
+				transform.localScale = new Vector3 (1, 1, 1);
+			}
+		} 
+		else 
+		{
+			if(Input.acceleration.x < -0.1f)
+			{
+				transform.localScale = new Vector3 (-1, 1, 1);
+			}
+		}
     }
 
     //Shift every value in the array and add current state
