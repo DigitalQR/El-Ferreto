@@ -47,46 +47,25 @@ public class movement : MonoBehaviour {
 
         body.velocity += (movement * Time.deltaTime * speed);
 
-		// setting ground condition for Animator
-		anim.SetBool ("ground", touching_ground);
+        animationUpdate();
+    }
 
-		// setting speed condition for Animator
-		if (keyboard_controlled) {
-			anim.SetFloat ("speed", Mathf.Abs (Input.GetAxis ("Horizontal")));
-		} 
-		else 
-		{
-			anim.SetFloat ("speed", Input.acceleration.x);
-		}
+    void animationUpdate() {
+        // setting ground condition for Animator
+        anim.SetBool("ground", touching_ground || Math.Round(body.velocity.x * 100) == 0);
 
-		// sprite faces right if moving forward
-		if (keyboard_controlled) 
-		{
-			if (Input.GetAxis ("Horizontal") > 0.1f) {
-				transform.localScale = new Vector3 (1, 1, 1);
-			}
-		} 
-		else 
-		{
-			if(Input.acceleration.x > 0.1f)
-			{
-				transform.localScale = new Vector3 (1, 1, 1);
-			}
-		}
-		// sprite faces left if moving back
-		if (keyboard_controlled) 
-		{
-			if (Input.GetAxis ("Horizontal") > 0.1f) {
-				transform.localScale = new Vector3 (1, 1, 1);
-			}
-		} 
-		else 
-		{
-			if(Input.acceleration.x < -0.1f)
-			{
-				transform.localScale = new Vector3 (-1, 1, 1);
-			}
-		}
+        // setting speed condition for Animator
+        anim.SetFloat("speed", Mathf.Abs(body.velocity.x));
+
+        //Flip sprite to face correct direction
+        if (body.velocity.x < 0f)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (body.velocity.x > 0f)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     //Shift every value in the array and add current state
@@ -141,6 +120,6 @@ public class movement : MonoBehaviour {
     //For debugging purposes only
     void OnGUI() 
     {
-        GUI.Label(new Rect(10, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude()*100)/100f);
+        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude()*100)/100f);
     }
 }
