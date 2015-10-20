@@ -110,19 +110,35 @@ public class movement : MonoBehaviour
         return Math.Abs(jump_state[0] - jump_state[jump_state.Length - 1]);
     }
 
+    //Stores last object the player stood on
+    private GameObject ground_object;
+
     void OnCollisionEnter2D(Collision2D collision_object)
     {
-        //If the player is touching buildings, it will be classed as on the ground
-        if (collision_object.gameObject.tag == "ground")
+
+        Vector2 contant_normal = collision_object.contacts[0].normal;
+
+        //If the contact normal is pointing up, the player must be on a flat surface
+        if (contant_normal == new Vector2(0,1))
         {
             touching_ground = true;
-
+            ground_object = collision_object.gameObject;
         }
+
+        last_normal = contant_normal;
     }
+
+    void OnCollisionExit2D(Collision2D collision_object)
+    {
+        if(collision_object.gameObject == ground_object) touching_ground = false;
+    }
+        
+
+    private Vector2 last_normal;
 
     //For debugging purposes only
     void OnGUI()
     {
-        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f);
+        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + touching_ground + " " + last_normal);
     }
 }
