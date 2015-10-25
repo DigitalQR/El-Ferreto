@@ -11,15 +11,15 @@ public class MainMenu : MonoBehaviour {
 	void Start(){
 	
 		GameMenu2.SetActive (true);
-		Time.timeScale = 0;
+		Time.timeScale = 1;
 
 	}
 
-	public void Resume(){
+/*	public void Resume(){
 		
 		paused = false;
 		
-	}
+	}*/
 
 	public void Restart(){
 
