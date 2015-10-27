@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class movement : MonoBehaviour
+public class Movement : MonoBehaviour
 {
 
     private Rigidbody2D body;
@@ -28,7 +28,6 @@ public class movement : MonoBehaviour
 
     void Update()
     {
-        Rigidbody2D body = GetComponent<Rigidbody2D>();
         Vector2 movement;
 
         if (keyboard_controlled)

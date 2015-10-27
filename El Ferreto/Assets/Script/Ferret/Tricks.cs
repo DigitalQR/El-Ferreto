@@ -5,20 +5,22 @@ public class Tricks : MonoBehaviour
 {
 
     private Rigidbody2D body;
-    private movement movement_script;
+    private Movement movement_script;
+    private bool trick_mode = false;
 
     private Vector2 touch_start = new Vector2();
     private Vector2 touch_end = new Vector2();
     private Vector2 draw = new Vector2();
 
     public float angle_leniency = 10;
+    public float angular_speed = 4f;
     private bool vertical_swipe = false;
     private bool horizontal_swipe = false;
 
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        movement_script = GetComponent<movement>();
+        movement_script = GetComponent<Movement>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class Tricks : MonoBehaviour
             movement_script.enabled = false;
             body.freezeRotation = false;
             horizontal_swipe = false;
+            trick_mode = true;
         }
 
         //Vertical swipe puts the ferret back into regular mode
@@ -39,7 +42,30 @@ public class Tricks : MonoBehaviour
             movement_script.enabled = true;
             body.freezeRotation = true;
             vertical_swipe = false;
+            trick_mode = false;
         }
+
+        if (trick_mode) {
+            trickUpdate();
+        }
+        else {
+            body.rotation /= 1.3f;
+        }
+    }
+
+    void trickUpdate() {
+        Vector2 movement;
+
+        if (movement_script.keyboard_controlled)
+        {
+            movement = new Vector2(Input.GetAxis("Horizontal"), 0);
+        }
+        else
+        {
+            movement = new Vector2(Input.acceleration.x, 0);
+        }
+        
+        body.rotation -= movement.x * angular_speed;
     }
 
     void handleTouch()
