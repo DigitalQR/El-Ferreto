@@ -6,6 +6,7 @@ public class movement : MonoBehaviour
 {
 
     private Rigidbody2D body;
+    private Grounding ground;
     private Animator anim;
     //Stores last y accelerometer states where 0 is the current state
     private float[] jump_state = new float[10];
@@ -15,13 +16,13 @@ public class movement : MonoBehaviour
     public float jump_height = 10f;
 
     public bool keyboard_controlled = false;
-    private bool touching_ground = false;
 
 
     void Start()
     {
         GetComponent<Rigidbody2D>().freezeRotation = true;
         body = GetComponent<Rigidbody2D>();
+        ground = GetComponent<Grounding>();
         anim = gameObject.GetComponent<Animator>();
     }
 
@@ -41,7 +42,7 @@ public class movement : MonoBehaviour
         }
 
         //Jump, if the player has tried to jump and is touching the ground
-        if (hasJumped() && touching_ground)
+        if (hasJumped() && ground.isTouchingGround())
         {
             jump(body);
         }
@@ -54,7 +55,7 @@ public class movement : MonoBehaviour
     void animationUpdate()
     {
         // setting ground condition for Animator
-        anim.SetBool("ground", touching_ground || Math.Round(body.velocity.x * 100) == 0);
+        anim.SetBool("ground", ground.isTouchingGround() || Math.Round(body.velocity.x * 100) == 0);
 
         // setting speed condition for Animator
         anim.SetFloat("speed", Mathf.Abs(body.velocity.x));
@@ -87,7 +88,7 @@ public class movement : MonoBehaviour
     {
         //If the player is on the ground and they jump
         body.velocity += new Vector2(0f, jump_height);
-        touching_ground = false;
+        ground.setTouchingGround(false);
     }
 
     //Has the player tried to jump
@@ -110,35 +111,9 @@ public class movement : MonoBehaviour
         return Math.Abs(jump_state[0] - jump_state[jump_state.Length - 1]);
     }
 
-    //Stores last object the player stood on
-    private GameObject ground_object;
-
-    void OnCollisionEnter2D(Collision2D collision_object)
-    {
-
-        Vector2 contant_normal = collision_object.contacts[0].normal;
-
-        //If the contact normal is pointing up, the player must be on a flat surface
-        if (contant_normal == new Vector2(0,1))
-        {
-            touching_ground = true;
-            ground_object = collision_object.gameObject;
-        }
-
-        last_normal = contant_normal;
-    }
-
-    void OnCollisionExit2D(Collision2D collision_object)
-    {
-        if(collision_object.gameObject == ground_object) touching_ground = false;
-    }
-        
-
-    private Vector2 last_normal;
-
     //For debugging purposes only
     void OnGUI()
     {
-        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + touching_ground + " " + last_normal);
+        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround());
     }
 }
