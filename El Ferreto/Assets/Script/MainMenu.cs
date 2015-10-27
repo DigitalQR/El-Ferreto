@@ -4,26 +4,20 @@ using System.Collections;
 public class MainMenu : MonoBehaviour {
 
 	//Variable for enabling/disabling pause menu
-	public GameObject GameMenu2;
+	public GameObject GameMenu;
 
 	private bool paused = false;
 	
 	void Start(){
 	
-		GameMenu2.SetActive (true);
+		GameMenu.SetActive (true);
 		Time.timeScale = 1;
 
 	}
 
-/*	public void Resume(){
-		
-		paused = false;
-		
-	}*/
-
 	public void Restart(){
 
-		GameMenu2.SetActive (false);
+		GameMenu.SetActive (false);
 		Application.LoadLevel(1); //Game loads the first scene
 
 	}
