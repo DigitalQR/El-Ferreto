@@ -23,6 +23,7 @@ public class KillPlayer : MonoBehaviour {
         if(other.gameObject.name == "ferret")
         {
             levelManager.RespawnPlayer();
+            Application.LoadLevel(Application.loadedLevel);
             
         }
     }
