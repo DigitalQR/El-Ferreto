@@ -11,9 +11,10 @@ public class Movement : MonoBehaviour
     //Stores last y accelerometer states where 0 is the current state
     private float[] jump_state = new float[10];
 
-    public float jump_threshold = 0.2f;
-    public float speed = 20f;
-    public float jump_height = 10f;
+    public float jump_threshold;
+    public float movement_magnitude;
+    public float max_speed;
+    public float jump_height;
 
     public bool keyboard_controlled = false;
 
@@ -46,7 +47,12 @@ public class Movement : MonoBehaviour
             jump(body);
         }
 
-        body.velocity += (movement * Time.deltaTime * speed);
+        body.AddForce(movement * movement_magnitude * body.mass * Time.deltaTime);
+
+        //Ensure the current velocity isn't greater than the max speed
+        if (body.velocity.SqrMagnitude() > max_speed* max_speed) {
+            body.velocity = body.velocity.normalized * max_speed;
+        }
 
         animationUpdate();
     }
@@ -113,6 +119,6 @@ public class Movement : MonoBehaviour
     //For debugging purposes only
     void OnGUI()
     {
-        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround());
+        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround() + "\n" + body.velocity + " " + body.velocity.normalized);
     }
 }
