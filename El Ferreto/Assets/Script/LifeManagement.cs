@@ -1,20 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LifeManagement : MonoBehaviour
 {
     public int Health;
+    public Text Healthk;
+    public float _fontSize;
+
 
     void Start()
     {
         Health = 3;
+        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20;
+        Healthk.fontSize = (int)_fontSize;
+        Healthk.text = "Lives:" + Health; 
     }
 
     void Update()
     {
+
         if ((int)Health <= 0)
         {
-          //  GameObject
+
         }
 
     }
@@ -30,11 +38,5 @@ public class LifeManagement : MonoBehaviour
         {
             Health = 0;
         }
-
-    }
-    void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width - 10, 10, 100, 30), "lives:" + Health);
-
     }
 }
