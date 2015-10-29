@@ -34,19 +34,15 @@ public class Tricks : MonoBehaviour
             //If not on the ground, go into trick mode
             if (!GetComponent<Grounding>().isTouchingGround())
             {
-                trick_mode = true;
-                movement_script.enabled = false;
-                body.freezeRotation = false;
+                enterTrickMode();
             }
         }
 
         //Vertical swipe puts the ferret back into regular mode
         if (vertical_swipe)
         {
-            movement_script.enabled = true;
-            body.freezeRotation = true;
             vertical_swipe = false;
-            trick_mode = false;
+            leaveTrickMode();
             calculateScore();
         }
 
@@ -68,10 +64,15 @@ public class Tricks : MonoBehaviour
         }
         else
         {
-            movement = new Vector2(Input.acceleration.x, 0);
+            movement = new Vector2(Input.acceleration.x * 3f, 0);
         }
         
         body.rotation -= movement.x * angular_speed;
+
+        if (GetComponent<Grounding>().isTouchingGround()) {
+            leaveTrickMode();
+            Debug.Log("Damage");
+        }
     }
 
     //Calculates score based on how many flips the ferret has done
@@ -133,6 +134,18 @@ public class Tricks : MonoBehaviour
         {
             vertical_swipe = true;
         }
+    }
+
+    void enterTrickMode() {
+        trick_mode = true;
+        movement_script.enabled = false;
+        body.freezeRotation = false;
+    }
+
+    void leaveTrickMode() {
+        movement_script.enabled = true;
+        body.freezeRotation = true;
+        trick_mode = false;
     }
 
     //For debugging purposes only

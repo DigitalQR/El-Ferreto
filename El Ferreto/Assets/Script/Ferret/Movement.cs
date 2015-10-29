@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            movement = new Vector2(Input.acceleration.x, 0);
+            movement = new Vector2(Input.acceleration.x * 3f, 0);
             pollJumpStates();
         }
 
