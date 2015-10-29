@@ -5,9 +5,10 @@ public class Scoring : MonoBehaviour
 {
 
     float distanceTravelled = 0;
-	int DistRound =0;
+	int furthest_distance = 0;
     float lastPosition;
 
+    int total_score;
 
     void Start()
     {
@@ -21,15 +22,21 @@ public class Scoring : MonoBehaviour
         lastPosition = transform.position.x;
         int score = Mathf.RoundToInt(distanceTravelled);
 
-        if (score > DistRound)
+        if (score > furthest_distance)
         {
-            DistRound = score;
+            addToScore(score - furthest_distance);
+            furthest_distance = score;
+
         }
 
     }
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 100, 30), "distance:" + DistRound);
+        GUI.Label(new Rect(10, 10, 100, 30), "distance:" + total_score);
+    }
+
+    public void addToScore(int amount) {
+        total_score += amount;
     }
 }

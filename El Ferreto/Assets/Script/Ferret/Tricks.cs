@@ -30,10 +30,14 @@ public class Tricks : MonoBehaviour
         //Horizontal swipe puts the ferret into trick mode
         if (horizontal_swipe)
         {
-            movement_script.enabled = false;
-            body.freezeRotation = false;
             horizontal_swipe = false;
-            trick_mode = true;
+            //If not on the ground, go into trick mode
+            if (!GetComponent<Grounding>().isTouchingGround())
+            {
+                trick_mode = true;
+                movement_script.enabled = false;
+                body.freezeRotation = false;
+            }
         }
 
         //Vertical swipe puts the ferret back into regular mode
@@ -43,6 +47,7 @@ public class Tricks : MonoBehaviour
             body.freezeRotation = true;
             vertical_swipe = false;
             trick_mode = false;
+            calculateScore();
         }
 
         if (trick_mode) {
@@ -53,7 +58,8 @@ public class Tricks : MonoBehaviour
         }
     }
 
-    void trickUpdate() {
+    void trickUpdate()
+    {
         Vector2 movement;
 
         if (movement_script.keyboard_controlled)
@@ -66,6 +72,13 @@ public class Tricks : MonoBehaviour
         }
         
         body.rotation -= movement.x * angular_speed;
+    }
+
+    //Calculates score based on how many flips the ferret has done
+    void calculateScore()
+    {
+        int score = (int)Mathf.Abs(body.rotation / 360f);
+        GetComponent<Scoring>().addToScore(score);
     }
 
     void handleTouch()
@@ -98,6 +111,7 @@ public class Tricks : MonoBehaviour
         }
     }
 
+    //Looks at the line that has been drawn and sees if the line is (close enough) a horizontal or vertical line
     void createLine()
     {
         draw = touch_end - touch_start;
@@ -105,14 +119,17 @@ public class Tricks : MonoBehaviour
 
         //Is line close enough to a horizontal line?
         float horizontal_angle = Vector2.Angle(draw, new Vector2(1, 0));
-        if (horizontal_angle <= angle_leniency && horizontal_angle >= -angle_leniency)
+
+        if (horizontal_angle <= angle_leniency && horizontal_angle >= -angle_leniency ||
+            horizontal_angle - 180 <= angle_leniency && horizontal_angle - 180 >= -angle_leniency)
         {
             horizontal_swipe = true;
         }
 
         //Is line close enough to a vertical line?
         float vertical_angle = Vector2.Angle(draw, new Vector2(0, 1));
-        if (vertical_angle <= angle_leniency && vertical_angle >= -angle_leniency)
+        if (vertical_angle <= angle_leniency && vertical_angle >= -angle_leniency ||
+            vertical_angle - 180 <= angle_leniency && vertical_angle - 180 >= -angle_leniency)
         {
             vertical_swipe = true;
         }
