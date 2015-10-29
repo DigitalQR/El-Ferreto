@@ -7,9 +7,9 @@ public class KillPlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
         levelManager = FindObjectOfType<LevelManager>();
-	}
+        Debug.Log("ssss");
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,9 +17,10 @@ public class KillPlayer : MonoBehaviour {
 	}
 
     //if player enters this trigger zone
-    void onTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.name == "ferret")
+        Debug.Log(other.gameObject.name);
+        if(other.gameObject.name == "ferret")
         {
             levelManager.RespawnPlayer();
             
