@@ -7,11 +7,11 @@ public class Scoring : MonoBehaviour
     float distanceTravelled = 0;
 	int DistRound =0;
     float lastPosition;
-
+    int fontsize = Screen.width / 20;
 
     void Start()
     {
-        lastPosition = transform.position.x;
+        lastPosition = transform.position.x; //takes initial opsition of ferret
     }
 
 
@@ -30,6 +30,7 @@ public class Scoring : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 100, 30), "distance:" + DistRound);
+        GUI.Label(new Rect(10, 10, Screen.width / 20, Screen.height / 10), "distance:" + DistRound);
+
     }
 }
