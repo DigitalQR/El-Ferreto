@@ -8,7 +8,6 @@ public class KillPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         levelManager = FindObjectOfType<LevelManager>();
-        Debug.Log("ssss");
     }
 	
 	// Update is called once per frame

@@ -5,11 +5,11 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject currentCheckpoint;
 
-    private movement ferret;
+    private Movement ferret;
 
 	// Use this for initialization
 	void Start () {
-        ferret = FindObjectOfType<movement>();
+        ferret = FindObjectOfType<Movement>();
 	}
 	
 	// Update is called once per frame
