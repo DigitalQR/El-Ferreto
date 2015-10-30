@@ -1,22 +1,34 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LifeManagement : MonoBehaviour
 {
     public int Health;
+    public Text Healthk;
+    public float _fontSize;
+    public LevelManager levelManager;
+
 
     void Start()
     {
         Health = 3;
+        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20;
+        Healthk.fontSize = (int)_fontSize;
+    }
+
+    public void decreaseLife() {
+        Health--;
     }
 
     void Update()
     {
+
         if ((int)Health <= 0)
         {
-          //  GameObject
+            GetComponent<KillPlayer>().kill();
         }
-
+        Healthk.text = "Lives:" + Health; 
     }
 
 
@@ -30,11 +42,5 @@ public class LifeManagement : MonoBehaviour
         {
             Health = 0;
         }
-
-    }
-    void OnGUI()
-    {
-        GUI.Label(new Rect(Screen.width - 10, 10, 100, 30), "lives:" + Health);
-
     }
 }

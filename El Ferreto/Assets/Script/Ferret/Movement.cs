@@ -119,6 +119,6 @@ public class Movement : MonoBehaviour
     //For debugging purposes only
     void OnGUI()
     {
-        GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround() + "\n" + body.velocity + " " + body.velocity.normalized);
+        //GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround() + "\n" + body.velocity + " " + body.velocity.normalized);
     }
 }

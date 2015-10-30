@@ -71,7 +71,7 @@ public class Tricks : MonoBehaviour
 
         if (GetComponent<Grounding>().isTouchingGround()) {
             leaveTrickMode();
-            Debug.Log("Damage");
+            GetComponent<LifeManagement>().decreaseLife();
         }
     }
 
@@ -151,6 +151,6 @@ public class Tricks : MonoBehaviour
     //For debugging purposes only
     void OnGUI()
     {
-        GUI.Label(new Rect(200, 10, 1000, 100), "Tricks Debug:\n" + touch_start + " " + touch_end + "\n" + draw + " " + vertical_swipe + " " + horizontal_swipe);
+        //GUI.Label(new Rect(200, 10, 1000, 100), "Tricks Debug:\n" + touch_start + " " + touch_end + "\n" + draw + " " + vertical_swipe + " " + horizontal_swipe);
     }
 }
