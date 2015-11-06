@@ -7,38 +7,43 @@ public class Scoring : MonoBehaviour
 
 	int furthest_distance = 0;
     float lastPosition;
-    int total_score;
-    public Text Scoretext;
-    public float distanceTravelled = 0;
+    int TotalScore;
+    public int TrickScore;
+    public Text DistText;
+    public Text TrickText;
+    public Text ScoreText;
+    public float DistanceTravelled = 0;
     public int DistRound = 0;
-    public int fontsize = Screen.width / 20;
+    public int Distance;
     public float _fontSize;
+    public int PointsPerFlip;
 
     void Start()
     {
         lastPosition = transform.position.x; //takes initial opsition of ferret
         _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; 
-        Scoretext.fontSize = (int)_fontSize;
+        ScoreText.fontSize = (int)_fontSize;
+        DistText.fontSize = (int)_fontSize;
+        TrickText.fontSize = (int)_fontSize/2;
     }
 
     void Update()
     {
-        distanceTravelled += (transform.position.x - lastPosition);
+        DistanceTravelled += (transform.position.x - lastPosition);
         lastPosition = transform.position.x;
-        int score = Mathf.RoundToInt(distanceTravelled);
+        int Distance = Mathf.RoundToInt(DistanceTravelled);
 
-        if (score > furthest_distance)
+        if (Distance > furthest_distance)
         {
-            addToScore(score - furthest_distance);
-            furthest_distance = score;
-
+            addToTrickScore(Distance - furthest_distance);
+            furthest_distance = Distance;
         }
-
+        DistText.text = "distance:" + Distance;
+        TrickText.text = "Tricks:" + TrickScore;
     }
 
+    public void addToTrickScore(int amount) {
+        TotalScore += amount*PointsPerFlip;
 
-    public void addToScore(int amount) {
-        total_score += amount;
-        Scoretext.text = "Score:" + total_score;
     }
 }

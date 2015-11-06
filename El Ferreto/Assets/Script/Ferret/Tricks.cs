@@ -79,7 +79,7 @@ public class Tricks : MonoBehaviour
     void calculateScore()
     {
         int score = (int)Mathf.Abs(body.rotation / 360f);
-        GetComponent<Scoring>().addToScore(score);
+        GetComponent<Scoring>().addToTrickScore(score);
     }
 
     void handleTouch()
