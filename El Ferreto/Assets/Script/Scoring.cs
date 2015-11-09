@@ -20,7 +20,7 @@ public class Scoring : MonoBehaviour
 
     void Start()
     {
-        lastPosition = transform.position.x; //takes initial opsition of ferret
+        lastPosition = transform.position.x; //takes initial position of ferret
         _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; 
         ScoreText.fontSize = (int)_fontSize;
         DistText.fontSize = (int)_fontSize;
@@ -29,21 +29,21 @@ public class Scoring : MonoBehaviour
 
     void Update()
     {
-        DistanceTravelled += (transform.position.x - lastPosition);
-        lastPosition = transform.position.x;
-        int Distance = Mathf.RoundToInt(DistanceTravelled);
+        DistanceTravelled += (transform.position.x - lastPosition); // adds or subtracts dfepending on movement
+        lastPosition = transform.position.x; //sets last position for next frame for calculation
+        int Distance = Mathf.RoundToInt(DistanceTravelled); //rounds it so it displays nicely
 
-        if (Distance > furthest_distance)
+        if (Distance < furthest_distance)
         {
-            addToTrickScore(Distance - furthest_distance);
-            furthest_distance = Distance;
+            Distance = furthest_distance;
         }
+        addToTrickScore(Distance - furthest_distance);
         DistText.text = "distance:" + Distance;
         TrickText.text = "Tricks:" + TrickScore;
     }
 
     public void addToTrickScore(int amount) {
-        TotalScore += amount*PointsPerFlip;
+        TrickScore += amount*PointsPerFlip;
 
     }
 }
