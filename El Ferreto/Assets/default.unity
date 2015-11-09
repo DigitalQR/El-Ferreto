@@ -4441,7 +4441,6 @@ GameObject:
   - 20: {fileID: 1455690910}
   - 124: {fileID: 1455690909}
   - 92: {fileID: 1455690908}
-  - 81: {fileID: 1455690907}
   - 114: {fileID: 1455690912}
   m_Layer: 0
   m_Name: Offscreen Camera
@@ -4450,13 +4449,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1455690907
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1455690906}
-  m_Enabled: 1
 --- !u!92 &1455690908
 Behaviour:
   m_ObjectHideFlags: 0
