@@ -1,6 +1,6 @@
 # .gitattributes
 
-# Treat them as binary files for GitMerge
-*.unity binary
-*.prefab binary
-*.asset binary
+# Treat them as non-binary files for GitMerge
+*.unity diff
+*.prefab diff
+*.asset diff
