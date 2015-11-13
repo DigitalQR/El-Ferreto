@@ -49,7 +49,8 @@ public class Tricks : MonoBehaviour
         if (trick_mode) {
             trickUpdate();
         }
-        else {
+        else
+        {
             body.rotation /= 1.3f;
         }
     }
@@ -71,7 +72,12 @@ public class Tricks : MonoBehaviour
 
         if (GetComponent<Grounding>().isTouchingGround()) {
             leaveTrickMode();
-            GetComponent<LifeManagement>().decreaseLife();
+
+            //Take damage, but only if ferret has not landed on it's feet
+            if (body.rotation > 45 || body.rotation < -45)
+            {
+                GetComponent<LifeManagement>().decreaseLife();
+            }
         }
     }
 
@@ -146,11 +152,11 @@ public class Tricks : MonoBehaviour
         movement_script.enabled = true;
         body.freezeRotation = true;
         trick_mode = false;
+
+        while (body.rotation >= 360) body.rotation -= 360;
+        while (body.rotation <= -360) body.rotation += 360;
+        if (body.rotation >= 180) body.rotation -= 360;
+        if (body.rotation <= -180) body.rotation += 360;
     }
 
-    //For debugging purposes only
-    void OnGUI()
-    {
-        //GUI.Label(new Rect(200, 10, 1000, 100), "Tricks Debug:\n" + touch_start + " " + touch_end + "\n" + draw + " " + vertical_swipe + " " + horizontal_swipe);
-    }
 }
