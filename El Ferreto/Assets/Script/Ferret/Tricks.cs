@@ -78,8 +78,8 @@ public class Tricks : MonoBehaviour
     //Calculates score based on how many flips the ferret has done
     void calculateScore()
     {
-        int score = (int)Mathf.Abs(body.rotation / 360f);
-        GetComponent<Scoring>().addToTrickScore(score);
+        int amount = (int)Mathf.Abs(body.rotation / 360f);
+        GetComponent<Scoring>().addToTrickScore(amount);
     }
 
     void handleTouch()

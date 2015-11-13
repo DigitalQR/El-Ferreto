@@ -5,7 +5,7 @@ using System.Collections;
 public class Scoring : MonoBehaviour
 {
 
-	int furthest_distance = 0;
+	int furthestDistance = 0;
     float lastPosition;
     int TotalScore;
     public int TrickScore;
@@ -16,7 +16,7 @@ public class Scoring : MonoBehaviour
     public int DistRound = 0;
     public int Distance;
     public float _fontSize;
-    public int PointsPerFlip;
+    public int PointsPerFlip = 1;
 
     void Start()
     {
@@ -31,14 +31,14 @@ public class Scoring : MonoBehaviour
     {
         DistanceTravelled += (transform.position.x - lastPosition); // adds or subtracts dfepending on movement
         lastPosition = transform.position.x; //sets last position for next frame for calculation
-        int Distance = Mathf.RoundToInt(DistanceTravelled); //rounds it so it displays nicely
+        Distance = Mathf.RoundToInt(DistanceTravelled); //rounds it so it displays nicely
 
-        if (Distance < furthest_distance)
+        if (Distance > furthestDistance)
         {
-            Distance = furthest_distance;
+			furthestDistance = Distance;
         }
-        addToTrickScore(Distance - furthest_distance);
-        DistText.text = "distance:" + Distance;
+        addToTrickScore(Distance - furthestDistance);
+        DistText.text = "distance:" + furthestDistance;
         TrickText.text = "Tricks:" + TrickScore;
     }
 
