@@ -7,30 +7,41 @@ public class Pause : MonoBehaviour {
 
 	public void Start()
 	{
-		OnUnPause ();
+
+		OnUnPause();
+
 	}
 
 	public void OnPause()
 	{
-		Time.timeScale = 0; // Stops time
-		pauseButton.SetActive(false);
+
+		pauseButton.SetActive (false);
 		pausePanel.SetActive (true);
+		Time.timeScale = 0; // Stops the time
+
 	}
 
 	public void OnUnPause()
 	{
-		Time.timeScale = 1;
-		pauseButton.SetActive(true);
+
+		pauseButton.SetActive (true);
 		pausePanel.SetActive (false);
+		Time.timeScale = 1; // Resumes the time
+
 	}
 
 	public void Restart()
 	{
-		Application.LoadLevel(Application.loadedLevel); // Loads current scene
+
+		Application.LoadLevel (Application.loadedLevel); // Loads current scene
+
 	}
 
-	public void Quit()
+	public void Exit()
 	{
-		Application.Quit();
+
+		Application.Quit ();
+
 	}
+
 }
