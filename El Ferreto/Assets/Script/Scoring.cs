@@ -8,7 +8,7 @@ public class Scoring : MonoBehaviour
 	int furthestDistance = 0;
     float lastPosition;
     int TotalScore;
-    public int TrickScore;
+    private int TrickScore = 0;
     public Text DistText;
     public Text TrickText;
     public Text ScoreText;
@@ -16,7 +16,7 @@ public class Scoring : MonoBehaviour
     public int DistRound = 0;
     public int Distance;
     public float _fontSize;
-    public int PointsPerFlip = 1;
+	private const int PointsPerFlip = 3;
 
     void Start()
     {
@@ -37,13 +37,13 @@ public class Scoring : MonoBehaviour
         {
 			furthestDistance = Distance;
         }
-        addToTrickScore(Distance - furthestDistance);
+
         DistText.text = "distance:" + furthestDistance;
         TrickText.text = "Tricks:" + TrickScore;
     }
 
     public void addToTrickScore(int amount) {
-        TrickScore += amount*PointsPerFlip;
-
-    }
+		TrickScore += amount*PointsPerFlip;
+		
+	}
 }

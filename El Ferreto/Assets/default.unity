@@ -1222,7 +1222,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2f27c8baa6ed7f241833cf9a9d5963df, type: 3}
+    m_Font: {fileID: 12800000, guid: ef987a0ee047c3c46a039547e9d90257, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -1547,7 +1547,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2f27c8baa6ed7f241833cf9a9d5963df, type: 3}
+    m_Font: {fileID: 12800000, guid: ef987a0ee047c3c46a039547e9d90257, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -2120,7 +2120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36be24cd532beb84296ef06f0dd896b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrickScore: 0
   DistText: {fileID: 348549715}
   TrickText: {fileID: 285391214}
   ScoreText: {fileID: 1277168172}
@@ -2128,7 +2127,6 @@ MonoBehaviour:
   DistRound: 0
   Distance: 0
   _fontSize: 0
-  PointsPerFlip: 0
 --- !u!114 &594207300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,7 +4200,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2f27c8baa6ed7f241833cf9a9d5963df, type: 3}
+    m_Font: {fileID: 12800000, guid: ef987a0ee047c3c46a039547e9d90257, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -5451,7 +5449,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 2f27c8baa6ed7f241833cf9a9d5963df, type: 3}
+    m_Font: {fileID: 12800000, guid: ef987a0ee047c3c46a039547e9d90257, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0

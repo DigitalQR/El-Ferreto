@@ -42,8 +42,8 @@ public class Tricks : MonoBehaviour
         if (vertical_swipe)
         {
             vertical_swipe = false;
-            leaveTrickMode();
-            calculateScore();
+			calculateScore();
+			leaveTrickMode();
         }
 
         if (trick_mode) {
