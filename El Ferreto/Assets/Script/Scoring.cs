@@ -1,21 +1,29 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
 public class Scoring : MonoBehaviour
 {
+
 
 	int furthestDistance = 0;
     float lastPosition;
     int TotalScore;
     private int TrickScore = 0;
-    public Text DistText;
-    public Text TrickText;
-    public Text ScoreText;
     public float DistanceTravelled = 0;
     public int DistRound = 0;
     public int Distance;
+
+    public int[] HighScore;
+    public string[] HighNames;
+    int OldScore;
+
     public float _fontSize;
+    public Text DistText;
+    public Text TrickText;
+    public Text ScoreText;
+   
 	private const int PointsPerFlip = 3;
 
     void Start()
@@ -37,13 +45,26 @@ public class Scoring : MonoBehaviour
         {
 			furthestDistance = Distance;
         }
-
+        
         DistText.text = "distance:" + furthestDistance;
         TrickText.text = "Tricks:" + TrickScore;
     }
 
+    public void OnPlayerDeath()
+    {
+        TotalScore = furthestDistance + TrickScore;
+        Checkscore(TotalScore);
+    }
+
     public void addToTrickScore(int amount) {
-		TrickScore += amount*PointsPerFlip;
-		
-	}
+		TrickScore += amount*PointsPerFlip; //adds points to tricks depending on predetermined points per flip
+    }
+
+    private void Checkscore(int totalScore)
+    {
+        for (var i = 0; i < HighScore[i]; i++)
+            if (PlayerPrefs.GetInt(i + "Highscore") < totalScore);
+            PlayerPrefs.SetInt(Highscore = totalScore);
+
+    }
 }
