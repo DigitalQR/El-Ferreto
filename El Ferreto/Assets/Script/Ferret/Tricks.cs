@@ -4,6 +4,7 @@ using System.Collections;
 public class Tricks : MonoBehaviour
 {
 
+    public ParticleSystem particles;
     private Rigidbody2D body;
     private Movement movement_script;
     private bool trick_mode = false;
@@ -21,6 +22,7 @@ public class Tricks : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         movement_script = GetComponent<Movement>();
+        particles.enableEmission = false;
     }
 
     void Update()
@@ -146,12 +148,14 @@ public class Tricks : MonoBehaviour
         trick_mode = true;
         movement_script.enabled = false;
         body.freezeRotation = false;
+        particles.enableEmission = true;
     }
 
     void leaveTrickMode() {
         movement_script.enabled = true;
         body.freezeRotation = true;
         trick_mode = false;
+        particles.enableEmission = false;
 
         while (body.rotation >= 360) body.rotation -= 360;
         while (body.rotation <= -360) body.rotation += 360;
