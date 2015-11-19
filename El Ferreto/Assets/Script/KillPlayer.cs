@@ -28,7 +28,6 @@ public class KillPlayer : MonoBehaviour {
 
     public void kill()
     {
-        levelManager.RespawnPlayer();
-        Application.LoadLevel(Application.loadedLevel);
+        Application.LoadLevel(2);
     }
 }
