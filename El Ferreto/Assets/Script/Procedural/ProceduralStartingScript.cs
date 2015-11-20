@@ -20,8 +20,9 @@ public class ProceduralStartingScript : MonoBehaviour {
 
 	}
 
-	void OnBecomeInvisible()
+	void OnBecameInvisible()
 	{
+		Invoke("SpawnRandomBuilding",1);
 		Destroy (gameObject, 1);
 	}
 }
