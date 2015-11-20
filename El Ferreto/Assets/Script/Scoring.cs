@@ -15,8 +15,8 @@ public class Scoring : MonoBehaviour
     public int DistRound = 0;
     public int Distance;
 
-    public int[] HighScore;
-    public string[] HighNames;
+    public String Name;
+    public String OldName;
     int OldScore;
 
     public float _fontSize;
@@ -53,7 +53,10 @@ public class Scoring : MonoBehaviour
     public void OnPlayerDeath()
     {
         TotalScore = furthestDistance + TrickScore;
+        ScoreText.text = "Total Score:" + TotalScore;
+        Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
         Checkscore(TotalScore);
+
     }
 
     public void addToTrickScore(int amount) {
@@ -62,9 +65,26 @@ public class Scoring : MonoBehaviour
 
     private void Checkscore(int totalScore)
     {
-        for (var i = 0; i < HighScore[i]; i++)
-            if (PlayerPrefs.GetInt(i + "Highscore") < totalScore);
-            PlayerPrefs.SetInt(Highscore = totalScore);
-
+        for (int i = 0; i < 10; i++)
+            if (PlayerPrefs.HasKey(i + "HScore"))
+            {
+                if (PlayerPrefs.GetInt(i + "HScore") < totalScore)
+                {
+                    OldScore = PlayerPrefs.GetInt(i + "HScore");
+                    OldName = PlayerPrefs.GetString(i + "HScoreName");
+                    PlayerPrefs.SetInt(i + "HScore", TotalScore);
+                    PlayerPrefs.SetString(i + "HScoreName", Name);
+                    TotalScore = OldScore;
+                    Name = OldName;
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(i + "HScore",TotalScore);
+                    PlayerPrefs.SetString(i + "HScoreName", Name);
+                    TotalScore = 0;
+                    Name = " ";
+ 
+                }
+            }
     }
 }
