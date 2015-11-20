@@ -4,11 +4,9 @@ using System.Collections;
 public class ProceduralStartingScript : MonoBehaviour {
 
 	public GameObject[] myObjects;
-	public static GameObject Manager;
 
 	// Use this for initialization
-	void Start () {
-		Manager = GameObject.Find ("Level Manager"); 
+	void Start () { 
 		Invoke ("SpawnRandomBuilding", 1);
 		Invoke ("SpawnRandomBuilding", 2);
 	}
@@ -24,6 +22,6 @@ public class ProceduralStartingScript : MonoBehaviour {
 
 	void OnBecomeInvisible()
 	{
-		Destroy (gameObject);
+		Destroy (gameObject, 1);
 	}
 }
