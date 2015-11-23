@@ -88,10 +88,6 @@ public class Scoring : MonoBehaviour
             }
     }
 
-    void OnGUI()
-    {
-        GUI.Box(new Rect(100, 75, 150, 50),+ PlayerPrefs.GetInt(i + "HScore" ));
-    }
 
 }
 
