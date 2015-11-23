@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
 
     public bool keyboard_controlled = false;
 
+    private Vector2 movement_force = new Vector2();
 
     void Start()
     {
@@ -47,12 +48,16 @@ public class Movement : MonoBehaviour
             jump(body);
         }
 
-        body.AddForce(movement * movement_magnitude * body.mass * Time.deltaTime);
+        movement_force += movement * movement_magnitude * body.mass * Time.deltaTime;
+        movement_force *= 0.8f;
 
         //Ensure the current x velocity isn't greater than the max speed
-        if (Mathf.Abs(body.velocity.x) > max_speed) {
-            body.velocity = new Vector2(max_speed * Math.Sign(body.velocity.x), body.velocity.y);
+        if (Mathf.Abs(movement_force.x) > max_speed)
+        {
+            movement_force = new Vector2(max_speed * Math.Sign(movement_force.x), movement_force.y);
         }
+
+        body.AddForce(movement_force);
 
         animationUpdate();
     }
