@@ -1095,7 +1095,7 @@ RectTransform:
   - {fileID: 1344418267}
   - {fileID: 1998326365}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1144,7 +1144,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 281481945}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 2027583946}
@@ -2089,10 +2089,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.26000023, y: 2.17000008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1165476569}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!95 &594207298
 Animator:
   serializedVersion: 3
@@ -2129,7 +2128,7 @@ MonoBehaviour:
   DistRound: 0
   Distance: 0
   _fontSize: 0
-  PointsPerFlip: 0
+  PointsPerFlip: 3
 --- !u!114 &594207300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3554,7 +3553,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 5.67000008
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3587,7 +3586,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 58.5200005
+      scalar: 60.7299995
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3714,7 +3713,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1.63999999
+      scalar: .870000005
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3779,28 +3778,28 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    gravityModifier: 0
+    gravityModifier: -.519999981
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 10000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
-    type: 4
-    radius: 1
+    type: 11
+    radius: .00999999978
     angle: 25
     length: 5
     boxX: 1
     boxY: 1
     boxZ: 1
-    arc: 360
+    arc: 0
     placementMode: 0
     m_Mesh: {fileID: 0}
-    randomDirection: 0
+    randomDirection: 1
   EmissionModule:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 10
+      scalar: 1000
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3917,7 +3916,7 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4278218751
+          rgba: 4294967295
         key1:
           serializedVersion: 2
           rgba: 4278251007
@@ -4597,11 +4596,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1165476566}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.189999998, y: -.0199999996, z: -8.31835938}
+  m_LocalPosition: {x: -9.28999996, y: 2.1500001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 594207297}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &1176234326
 GameObject:
   m_ObjectHideFlags: 0
@@ -6128,7 +6127,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!114 &1455690912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6301,7 +6300,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 1
 --- !u!224 &1474738414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6318,7 +6317,7 @@ RectTransform:
   - {fileID: 285391213}
   - {fileID: 348549717}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -6378,7 +6377,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!1 &1581701313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6533,7 +6532,7 @@ Transform:
   - {fileID: 953199439}
   - {fileID: 1860354041}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1670218596
 GameObject:
   m_ObjectHideFlags: 0
