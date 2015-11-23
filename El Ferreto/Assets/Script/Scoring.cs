@@ -7,7 +7,7 @@ public class Scoring : MonoBehaviour
 {
 
 
-	int furthestDistance = 0;
+    int furthestDistance = 0;
     float lastPosition;
     int TotalScore;
     private int TrickScore = 0;
@@ -23,16 +23,16 @@ public class Scoring : MonoBehaviour
     public Text DistText;
     public Text TrickText;
     public Text ScoreText;
-   
-	private const int PointsPerFlip = 3;
+
+    private const int PointsPerFlip = 3;
 
     void Start()
     {
         lastPosition = transform.position.x; //takes initial position of ferret
-        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; 
+        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20;
         ScoreText.fontSize = (int)_fontSize;
         DistText.fontSize = (int)_fontSize;
-        TrickText.fontSize = (int)_fontSize/2;
+        TrickText.fontSize = (int)_fontSize / 2;
     }
 
     void Update()
@@ -43,9 +43,9 @@ public class Scoring : MonoBehaviour
 
         if (Distance > furthestDistance)
         {
-			furthestDistance = Distance;
+            furthestDistance = Distance;
         }
-        
+
         DistText.text = "distance:" + furthestDistance;
         TrickText.text = "Tricks:" + TrickScore;
     }
@@ -59,8 +59,9 @@ public class Scoring : MonoBehaviour
 
     }
 
-    public void addToTrickScore(int amount) {
-		TrickScore += amount*PointsPerFlip; //adds points to tricks depending on predetermined points per flip
+    public void addToTrickScore(int amount)
+    {
+        TrickScore += amount * PointsPerFlip; //adds points to tricks depending on predetermined points per flip
     }
 
     private void Checkscore(int totalScore)
@@ -79,19 +80,13 @@ public class Scoring : MonoBehaviour
                 }
                 else
                 {
-                    PlayerPrefs.SetInt(i + "HScore",TotalScore);
+                    PlayerPrefs.SetInt(i + "HScore", TotalScore);
                     PlayerPrefs.SetString(i + "HScoreName", Name);
                     TotalScore = 0;
                     Name = " ";
- 
+
                 }
             }
     }
-
-    void OnGUI()
-    {
-        GUI.Box(new Rect(100, 75, 150, 50),+ PlayerPrefs.GetInt(i + "HScore" ));
-    }
-
 }
 

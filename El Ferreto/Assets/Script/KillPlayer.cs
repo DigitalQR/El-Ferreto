@@ -20,7 +20,7 @@ public class KillPlayer : MonoBehaviour {
     {
         if(other.gameObject.name == "ferret")
         {
-            kill();
+            GetComponent<Scoring>().Checkscore
         }
     }
 
