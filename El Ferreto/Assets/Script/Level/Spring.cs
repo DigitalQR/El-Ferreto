@@ -10,6 +10,11 @@ public class Spring : MonoBehaviour {
 
         if(game_object.name == "ferret"){
             Rigidbody2D body = game_object.GetComponent<Rigidbody2D>();
+
+            if (body.velocity.y < 0) {
+                body.velocity = new Vector2(body.velocity.x, 0);
+            }
+
             body.AddForce(body.mass * transform.up * spring_acceleration);
         }
     }

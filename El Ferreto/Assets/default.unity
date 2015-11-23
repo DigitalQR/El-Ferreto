@@ -8660,7 +8660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd7adf3ea271ef4e8c86428b24770db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spring_acceleration: 1000
+  spring_acceleration: 700
 --- !u!61 &2080075563
 BoxCollider2D:
   m_ObjectHideFlags: 0
