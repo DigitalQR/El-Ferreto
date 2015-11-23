@@ -9,7 +9,6 @@ public class Scoring : MonoBehaviour
 
     int furthestDistance = 0;
     float lastPosition;
-    int TotalScore;
     private int TrickScore = 0;
     public float DistanceTravelled = 0;
     public int DistRound = 0;
@@ -17,6 +16,8 @@ public class Scoring : MonoBehaviour
 
     public String Name;
     public String OldName;
+    const String HighScoreKey = "HighScore";
+    const String HighScoreNameKey = "HighScoreName";
     int OldScore;
 
     public float _fontSize;
@@ -52,10 +53,12 @@ public class Scoring : MonoBehaviour
 
     public void OnPlayerDeath()
     {
-        TotalScore = furthestDistance + TrickScore;
-        ScoreText.text = "Total Score:" + TotalScore;
-        Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
-        Checkscore(TotalScore);
+        int TotalScore = furthestDistance + TrickScore;
+        StoreScore(TotalScore);
+
+        //ScoreText.text = "Total Score:" + TotalScore;
+        //Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
+        //if (totalscore>(Score+str(1)))
 
     }
 
@@ -64,29 +67,82 @@ public class Scoring : MonoBehaviour
         TrickScore += amount * PointsPerFlip; //adds points to tricks depending on predetermined points per flip
     }
 
-    private void Checkscore(int totalScore)
-    {
+    //Used to reset values in playerPrefs
+    private void resetTable(){
         for (int i = 0; i < 10; i++)
-            if (PlayerPrefs.HasKey(i + "HScore"))
             {
-                if (PlayerPrefs.GetInt(i + "HScore") < totalScore)
-                {
-                    OldScore = PlayerPrefs.GetInt(i + "HScore");
-                    OldName = PlayerPrefs.GetString(i + "HScoreName");
-                    PlayerPrefs.SetInt(i + "HScore", TotalScore);
-                    PlayerPrefs.SetString(i + "HScoreName", Name);
-                    TotalScore = OldScore;
-                    Name = OldName;
-                }
-                else
-                {
-                    PlayerPrefs.SetInt(i + "HScore", TotalScore);
-                    PlayerPrefs.SetString(i + "HScoreName", Name);
-                    TotalScore = 0;
-                    Name = " ";
-
-                }
+                PlayerPrefs.SetInt(i + HighScoreKey, 0);
+                PlayerPrefs.SetString(i + "HScoreName", Name);
             }
     }
+
+    public void StoreScore(int TotalScore)
+    {
+
+        for (int i = 0; i < 10; i++)
+        {
+            //The entry in the table exists
+            if (PlayerPrefs.HasKey(i + HighScoreKey))
+            {
+                if (PlayerPrefs.GetInt(i + HighScoreKey) < TotalScore)
+                {
+                    OldScore = PlayerPrefs.GetInt(i + HighScoreKey);
+                    OldName = PlayerPrefs.GetString(i + "HScoreName");
+                    PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
+                    PlayerPrefs.SetString(i + "HScoreName", Name);
+
+                    //Move other entires down by 1
+                    for (int n = i + 1; n < 10; n++) {
+
+                        //The entry in the table exists
+                        if (PlayerPrefs.HasKey(n + HighScoreKey))
+                        {
+                            int tempScore = PlayerPrefs.GetInt(n + HighScoreKey);
+                            String tempName = PlayerPrefs.GetString(n + "HScoreName");
+
+                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
+                            PlayerPrefs.SetString(n + "HScoreName", OldName);
+
+                            OldScore = tempScore;
+                            OldName = tempName;
+                        }
+                        //The entry in the table doesn't exist
+                        else
+                        {
+                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
+                            PlayerPrefs.SetString(n + "HScoreName", OldName);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            //The entry in the table doesn't exist
+            else 
+            {
+                PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
+                PlayerPrefs.SetString(i + "HScoreName", Name);
+                break;
+            }
+        }
+
+        //TEST--------------------------------------------#
+        String table = "";
+        for (int i = 0; i < 10; i++) {
+            if (PlayerPrefs.HasKey(i + HighScoreKey))
+            {
+                table += i + " Score:" + PlayerPrefs.GetInt(i + HighScoreKey) + "\n";
+            }
+        }
+        Debug.Log(table);
+
+    }
+
+
+    public void OnGUI()
+    {
+        Debug.Log(OldScore);
+    }
 }
+
 
