@@ -8,7 +8,8 @@ public class ProceduralStartingScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () { 
 		Invoke ("SpawnRandomBuilding", 1);
-		Invoke ("SpawnRandomBuilding", 2);
+		Invoke ("SpawnRandomBuilding", 3);
+		Invoke ("SpawnRandomBuilding", 5);
 	}
 
 	void SpawnRandomBuilding()
@@ -22,7 +23,6 @@ public class ProceduralStartingScript : MonoBehaviour {
 
 	void OnBecameInvisible()
 	{
-		Invoke("SpawnRandomBuilding",1);
 		Destroy (gameObject, 1);
 	}
 }
