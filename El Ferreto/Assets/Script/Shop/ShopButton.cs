@@ -4,18 +4,16 @@ using System.Collections;
 
 public class ShopButton : MonoBehaviour {
 
-    private static uint item_track = 0;
-    private uint ID = item_track++;
-
+    public GameObject item;
+    public bool hat;
     public Text header;
     public Text price;
     public Button button;
-    public GameObject item;
+    public GameObject model;
 
     void Start()
     {
         updateDisplay();
-        Debug.Log("Item '" + item.name + "' ID:" + ID);
     }
 
     public void updateDisplay()
@@ -25,8 +23,16 @@ public class ShopButton : MonoBehaviour {
         header.text = item.GetComponent<Item>().item_name;
         price.text = "" + item.GetComponent<Item>().item_price;
 
-        display_item.transform.position = new Vector3(transform.position.x-0.3f, transform.position.y - 0.4f, -1);
-        display_item.transform.SetParent(transform);
+        display_item.transform.position += new Vector3(model.transform.position.x, model.transform.position.y, 1);
+        display_item.transform.SetParent(model.transform);
+    }
+
+    public void OnClick()
+    {
+        if (hat)
+            Outfiter.selected_hat = item;
+        else
+            Outfiter.selected_effect = item;
     }
 
 }
