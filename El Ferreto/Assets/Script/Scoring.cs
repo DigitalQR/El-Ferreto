@@ -62,11 +62,6 @@ public class Scoring : MonoBehaviour
         TotalScore = furthestDistance + TrickScore;
         AddToCurrency(TotalScore);
         StoreScore(TotalScore);
-
-        //ScoreText.text = "Total Score:" + TotalScore;
-        //Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
-        //if (totalscore>(Score+str(1)))
-
     }
 
     public void addToTrickScore(int amount)
@@ -130,12 +125,14 @@ public class Scoring : MonoBehaviour
 
     public void AddToCurrency(int TotalScore)
     {
-        if (PlayerPrefs.HasKey("Dicks"))//checks if key exists, if it does increaces the value by score achieved
+        if (PlayerPrefs.HasKey("Currency"))//checks if key exists, if it does increaces the value by score achieved
         {
-            PlayerPrefs.SetInt("Dicks", (PlayerPrefs.GetInt("Dicks") + TotalScore));
+            PlayerPrefs.SetInt("Currency", (PlayerPrefs.GetInt("Currency") + TrickScore));
         }
         else //if key dosent exist, create it
-            PlayerPrefs.SetInt("Dicks", TotalScore);
+            PlayerPrefs.SetInt("Currency", TotalScore);
+
+        Debug.Log(PlayerPrefs.GetInt("Currency"));
     }
 }
 

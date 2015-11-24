@@ -5240,7 +5240,6 @@ GameObject:
   - 223: {fileID: 1474738413}
   - 114: {fileID: 1474738412}
   - 114: {fileID: 1474738411}
-  - 114: {fileID: 1474738410}
   m_Layer: 5
   m_Name: scoretext.mlg
   m_TagString: Untagged
@@ -5248,18 +5247,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1474738410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11430550, guid: 7c9883feb405a6d4893404fcafb13dc4,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1474738409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76824e5fde8003f4c85f82c7c6b962fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1474738411
 MonoBehaviour:
   m_ObjectHideFlags: 0
