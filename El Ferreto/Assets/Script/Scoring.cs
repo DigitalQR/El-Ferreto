@@ -62,6 +62,8 @@ public class Scoring : MonoBehaviour
         TotalScore = furthestDistance + TrickScore;
         AddToCurrency(TotalScore);
         StoreScore(TotalScore);
+        //ScoreText.text = "Total Score:" + TotalScore;
+        //Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
     }
 
     public void addToTrickScore(int amount)
