@@ -48,8 +48,7 @@ public class Movement : MonoBehaviour
             jump(body);
         }
 
-        movement_force += movement * movement_magnitude * body.mass * Time.deltaTime;
-        movement_force *= 0.8f;
+        movement_force = movement * movement_magnitude * body.mass * Time.deltaTime;
 
         //Ensure the current x velocity isn't greater than the max speed
         if (Mathf.Abs(movement_force.x) > max_speed)
@@ -58,6 +57,7 @@ public class Movement : MonoBehaviour
         }
 
         body.AddForce(movement_force);
+        body.AddForce(body.mass * Camera.main.GetComponent<CameraMovement>().moveSpeed * new Vector2(1,0));
 
         animationUpdate();
     }
