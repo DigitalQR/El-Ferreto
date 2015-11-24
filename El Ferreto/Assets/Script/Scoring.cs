@@ -6,7 +6,7 @@ using System;
 public class Scoring : MonoBehaviour
 {
 
-
+    //variables used in calculating distance travelled
     int furthestDistance = 0;
     float lastPosition;
     private int TrickScore = 0;
@@ -14,23 +14,29 @@ public class Scoring : MonoBehaviour
     public int DistRound = 0;
     public int Distance;
 
+    //variables used for highscores
     public String Name;
     public String OldName;
     const String HighScoreKey = "HighScore";
     const String HighScoreNameKey = "HighScoreName";
     int OldScore;
+    int TotalScore;
+    int Currency;
 
+    //variables used in displaying the various text components
     public float _fontSize;
     public Text DistText;
     public Text TrickText;
     public Text ScoreText;
 
+    //variable for calculating trick score
     private const int PointsPerFlip = 3;
+
 
     void Start()
     {
         lastPosition = transform.position.x; //takes initial position of ferret
-        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20;
+        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; //sets the font size to be used by the game, scales with resolution and aspect ratio
         ScoreText.fontSize = (int)_fontSize;
         DistText.fontSize = (int)_fontSize;
         TrickText.fontSize = (int)_fontSize / 2;
@@ -42,7 +48,7 @@ public class Scoring : MonoBehaviour
         lastPosition = transform.position.x; //sets last position for next frame for calculation
         Distance = Mathf.RoundToInt(DistanceTravelled); //rounds it so it displays nicely
 
-        if (Distance > furthestDistance)
+        if (Distance > furthestDistance) //checks weither the ferret is moving forwards past the furthest point reached 
         {
             furthestDistance = Distance;
         }
@@ -51,9 +57,10 @@ public class Scoring : MonoBehaviour
         TrickText.text = "Tricks:" + TrickScore;
     }
 
-    public void OnPlayerDeath()
+    public void OnPlayerDeath() //when the player dies highscores are updated and currency is added
     {
-        int TotalScore = furthestDistance + TrickScore;
+        TotalScore = furthestDistance + TrickScore;
+        AddToCurrency(TotalScore);
         StoreScore(TotalScore);
 
         //ScoreText.text = "Total Score:" + TotalScore;
@@ -68,12 +75,13 @@ public class Scoring : MonoBehaviour
     }
 
     //Used to reset values in playerPrefs
-    private void resetTable(){
+    private void resetTable()
+    {
         for (int i = 0; i < 10; i++)
-            {
-                PlayerPrefs.SetInt(i + HighScoreKey, 0);
-                PlayerPrefs.SetString(i + "HScoreName", Name);
-            }
+        {
+            PlayerPrefs.SetInt(i + HighScoreKey, 0);
+            PlayerPrefs.SetString(i + "HScoreName", Name);
+        }
     }
 
     public void StoreScore(int TotalScore)
@@ -81,33 +89,27 @@ public class Scoring : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            //The entry in the table exists
-            if (PlayerPrefs.HasKey(i + HighScoreKey))
+            if (PlayerPrefs.HasKey(i + HighScoreKey))//first checks if the entries for high scores exist
             {
-                if (PlayerPrefs.GetInt(i + HighScoreKey) < TotalScore)
+                if (PlayerPrefs.GetInt(i + HighScoreKey) < TotalScore) //checks if the new score is higher than the other scores
                 {
                     OldScore = PlayerPrefs.GetInt(i + HighScoreKey);
                     OldName = PlayerPrefs.GetString(i + "HScoreName");
                     PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
                     PlayerPrefs.SetString(i + "HScoreName", Name);
-
-                    //Move other entires down by 1
-                    for (int n = i + 1; n < 10; n++) {
-
-                        //The entry in the table exists
-                        if (PlayerPrefs.HasKey(n + HighScoreKey))
+ 
+                    for (int n = i + 1; n < 10; n++)//for moving other entires down by 1
+                    {
+                        if (PlayerPrefs.HasKey(n + HighScoreKey)) //checks if entry exists
                         {
-                            int tempScore = PlayerPrefs.GetInt(n + HighScoreKey);
+                            int tempScore = PlayerPrefs.GetInt(n + HighScoreKey); //scores are temporarilly stored in order to be moved as required
                             String tempName = PlayerPrefs.GetString(n + "HScoreName");
-
-                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
+                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore); //Old score moved down to the next space on the table
                             PlayerPrefs.SetString(n + "HScoreName", OldName);
-
-                            OldScore = tempScore;
+                            OldScore = tempScore; //old score set so the next score can be shifted down
                             OldName = tempName;
-                        }
-                        //The entry in the table doesn't exist
-                        else
+                        }                   
+                        else //if the entry in the list dosent exist it needs to be made
                         {
                             PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
                             PlayerPrefs.SetString(n + "HScoreName", OldName);
@@ -117,31 +119,23 @@ public class Scoring : MonoBehaviour
                     break;
                 }
             }
-            //The entry in the table doesn't exist
-            else 
+            else //if The entry in the table doesn't exist, it's created
             {
                 PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
                 PlayerPrefs.SetString(i + "HScoreName", Name);
                 break;
             }
         }
-
-        //TEST--------------------------------------------#
-        String table = "";
-        for (int i = 0; i < 10; i++) {
-            if (PlayerPrefs.HasKey(i + HighScoreKey))
-            {
-                table += i + " Score:" + PlayerPrefs.GetInt(i + HighScoreKey) + "\n";
-            }
-        }
-        Debug.Log(table);
-
     }
 
-
-    public void OnGUI()
+    public void AddToCurrency(int TotalScore)
     {
-        Debug.Log(OldScore);
+        if (PlayerPrefs.HasKey("Dicks"))//checks if key exists, if it does increaces the value by score achieved
+        {
+            PlayerPrefs.SetInt("Dicks", (PlayerPrefs.GetInt("Dicks") + TotalScore));
+        }
+        else //if key dosent exist, create it
+            PlayerPrefs.SetInt("Dicks", TotalScore);
     }
 }
 
