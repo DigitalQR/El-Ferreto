@@ -20,7 +20,7 @@ public class Scoring : MonoBehaviour
     public const String HighScoreKey = "Score";
     public const String HighScoreNameKey = "ScoreName";
     int OldScore;
-    public static int TotalScore;
+    public int TotalScore;
     int Currency;
 
     //variables used in displaying the various text components
@@ -60,8 +60,7 @@ public class Scoring : MonoBehaviour
         TotalScore = furthestDistance + TrickScore;
         AddToCurrency(TotalScore);
         StoreScore(TotalScore);
-        //ScoreText.text = "Total Score:" + TotalScore;
-        //Name = GUI.TextField(new Rect(25, 25, 100, 30), Name);
+        PlayerPrefs.SetInt("PlayerScore", TotalScore);
     }
 
     public void addToTrickScore(int amount)
