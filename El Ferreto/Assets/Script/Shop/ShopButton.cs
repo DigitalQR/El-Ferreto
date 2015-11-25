@@ -24,7 +24,6 @@ public class ShopButton : MonoBehaviour {
     {
         if (item != null)
         {
-            //Create inventory profile
             if (!PlayerPrefs.HasKey("Item_" + item.GetComponent<Item>().item_name))
             {
                 PlayerPrefs.SetInt("Item_" + item.GetComponent<Item>().item_name, 0);
