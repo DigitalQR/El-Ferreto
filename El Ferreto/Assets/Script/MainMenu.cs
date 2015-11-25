@@ -20,9 +20,16 @@ public class MainMenu : MonoBehaviour {
 		GameMenu.SetActive (false);
 		Application.LoadLevel("default"); //Game loads the first scene
 
-	}
+    }
 
-	public void Exit(){
+    public void goToShop()
+    {
+        Application.LoadLevel("shop"); 
+    }
+
+
+
+    public void Exit(){
 
 		Application.Quit ();
 

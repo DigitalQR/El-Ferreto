@@ -17,9 +17,15 @@ public class GameOverScreen : MonoBehaviour {
 		overScreen.SetActive (false);
 		Application.LoadLevel("default"); //Game loads the first scene
 
-	}
+    }
 
-	public void Exit(){
+    public void backToMainMenu()
+    {
+        Application.LoadLevel("mainmenu"); 
+
+    }
+
+    public void Exit(){
 
 		Application.Quit ();
 
