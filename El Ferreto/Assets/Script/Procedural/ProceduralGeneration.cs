@@ -16,7 +16,7 @@ public class ProceduralGeneration : MonoBehaviour {
         
         float xsize = PrefabEnd.gameObject.transform.position.x - PrefabStart.gameObject.transform.position.x;
 
-        transform.position = new Vector3(Manager.transform.position.x, 0, 0) - PrefabStart.transform.localPosition;
+        transform.position = new Vector3(Manager.transform.position.x, 0, 1) - PrefabStart.transform.localPosition;
 		Manager.transform.position = new Vector3 (PrefabEnd.gameObject.transform.position.x, Manager.transform.position.y, 0);
 
         end_position = PrefabEnd.transform.position;
