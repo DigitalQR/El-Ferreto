@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_name: Orbiting RGB
-  item_price: 321
+  item_price: 400
 --- !u!114 &11496648
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +357,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: item_price
-      value: 321
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: angular_speed

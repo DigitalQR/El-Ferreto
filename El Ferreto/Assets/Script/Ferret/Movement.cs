@@ -70,12 +70,22 @@ public class Movement : MonoBehaviour
         // setting speed condition for Animator
         anim.SetFloat("speed", Mathf.Abs(body.velocity.x));
 
+        float movement;
+        if (keyboard_controlled)
+        {
+            movement = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            movement = Input.acceleration.x;
+        }
+
         //Flip sprite to face correct direction
-        if (body.velocity.x < 0f)
+        if (movement < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (body.velocity.x > 0f)
+        else if (movement > 0.1f)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
