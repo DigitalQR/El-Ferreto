@@ -20,8 +20,6 @@ public class Checkpoint : MonoBehaviour {
     {
         if(other.name == "ferret")
         {
-            //gameobject is the next checkpoint (may not be needed in future)
-            levelManager.currentCheckpoint = gameObject;
             Debug.Log("Activated Checkpoint " + transform.position);
         }
     }
