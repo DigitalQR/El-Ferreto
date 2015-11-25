@@ -677,7 +677,7 @@ Canvas:
   m_GameObject: {fileID: 1999907448}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 2027583946}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -830,7 +830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92208c6500548184d80271b89a6200bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameMenu: {fileID: 0}
 --- !u!114 &2027583950
 MonoBehaviour:
   m_ObjectHideFlags: 0
