@@ -27,6 +27,6 @@ public class KillPlayer : MonoBehaviour {
 
     public void kill()
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel("gameover");
     }
 }
