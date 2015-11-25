@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_name: Tower Of Hats
-  item_price: 100
+  item_price: 200
 --- !u!212 &21248066
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -271,6 +271,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: item_name
       value: Tower Of Hats
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: item_price
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

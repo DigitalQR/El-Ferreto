@@ -15,10 +15,24 @@ public class ShopButton : MonoBehaviour {
     public Button button;
     public GameObject model;
 
+    public GameObject coins;
+    public GameObject tick;
+
     public GameObject display_item;
 
     void Start()
     {
+        if (item != null)
+        {
+            if (!PlayerPrefs.HasKey("Item_" + item.GetComponent<Item>().item_name))
+            {
+                PlayerPrefs.SetInt("Item_" + item.GetComponent<Item>().item_name, 0);
+            }
+        }
+
+        coins.SetActive(false);
+        tick.SetActive(false);
+
         if (item != null) updateDisplay();
         else 
         {
@@ -40,6 +54,34 @@ public class ShopButton : MonoBehaviour {
 
     void Update()
     {
+
+        if (item == null)
+        {
+            coins.SetActive(false);
+            tick.SetActive(true);
+            price.text = "";
+        }
+        else
+        {
+            //Owns item
+            if (PlayerPrefs.GetInt("Item_" + item.GetComponent<Item>().item_name) == 1)
+            {
+                coins.SetActive(false);
+                tick.SetActive(true);
+                price.text = "";
+            }
+            //Doesn't own
+            else
+            {
+                coins.SetActive(true);
+                tick.SetActive(false);
+                price.text = "" + item.GetComponent<Item>().item_price;
+            }
+
+        }
+
+
+
         if (display_item != null && move_object)
         {
             track += Time.deltaTime;
@@ -48,6 +90,30 @@ public class ShopButton : MonoBehaviour {
     }
 
     public void OnClick()
+    {
+
+        if (item == null)
+        {
+            equip();
+        }
+
+        //Owns item
+        else if (PlayerPrefs.GetInt("Item_" + item.GetComponent<Item>().item_name) == 1)
+        {
+            equip();
+        }
+
+        //Buy item
+        else if (PlayerPrefs.GetInt("Currency") >= item.GetComponent<Item>().item_price)
+        {
+            PlayerPrefs.SetInt("Item_" + item.GetComponent<Item>().item_name, 1);
+            PlayerPrefs.SetInt("Currency", PlayerPrefs.GetInt("Currency") - item.GetComponent<Item>().item_price);
+            equip();
+
+        }
+    }
+
+    void equip()
     {
         if (hat)
             Outfiter.selected_hat = item;
