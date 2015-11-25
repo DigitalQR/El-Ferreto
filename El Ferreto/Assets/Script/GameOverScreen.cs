@@ -15,7 +15,7 @@ public class GameOverScreen : MonoBehaviour {
 	public void Restart(){
 
 		overScreen.SetActive (false);
-		Application.LoadLevel(1); //Game loads the first scene
+		Application.LoadLevel("default"); //Game loads the first scene
 
 	}
 
