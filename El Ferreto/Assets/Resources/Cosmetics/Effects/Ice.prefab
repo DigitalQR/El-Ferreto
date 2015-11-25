@@ -70,8 +70,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2107e7ed3474ad540a99c307249800ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item_name: Trail Of Fire
-  item_price: 356
+  item_name: Chilly Nips
+  item_price: 432
 --- !u!114 &11420526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1183,11 +1183,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: item_name
-      value: Trail Of Fire
+      value: Chilly Nips
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: item_price
-      value: 356
+      value: 432
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
