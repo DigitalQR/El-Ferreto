@@ -96,6 +96,7 @@ GameObject:
   - 222: {fileID: 10837273}
   - 114: {fileID: 10837272}
   - 114: {fileID: 10837271}
+  - 114: {fileID: 10837274}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -214,6 +215,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 10837269}
+--- !u!114 &10837274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 10837269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cdb4459f9da5640a222ec2f4d3efa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205628489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,7 +1162,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -160, y: -20}
+  m_AnchoredPosition: {x: -160.000031, y: -19.9999847}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1496575854
@@ -1805,7 +1817,6 @@ GameObject:
   - 114: {fileID: 1999907450}
   - 114: {fileID: 1999907449}
   - 114: {fileID: 1999907453}
-  - 114: {fileID: 1999907454}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1898,40 +1909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overScreen: {fileID: 205628489}
---- !u!114 &1999907454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1999907448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604c1f4b324824e4d880539a9ef32389, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ScoreText: {fileID: 1306746693}
-  Name: {fileID: 0}
-  NameInput: {fileID: 10837271}
-  HighScore: {fileID: 0}
-  HighName: {fileID: 0}
-  Score1: {fileID: 0}
-  Name1: {fileID: 0}
-  Score2: {fileID: 0}
-  Name2: {fileID: 0}
-  Score3: {fileID: 0}
-  Name3: {fileID: 0}
-  Score4: {fileID: 0}
-  Name4: {fileID: 0}
-  Score5: {fileID: 0}
-  Name5: {fileID: 0}
-  Score6: {fileID: 0}
-  Name6: {fileID: 0}
-  Score7: {fileID: 0}
-  Name7: {fileID: 0}
-  Score8: {fileID: 0}
-  Name8: {fileID: 0}
-  Score9: {fileID: 0}
-  Name9: {fileID: 0}
 --- !u!1 &2027583941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,7 +1923,6 @@ GameObject:
   - 81: {fileID: 2027583943}
   - 114: {fileID: 2027583942}
   - 114: {fileID: 2027583948}
-  - 114: {fileID: 2027583949}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2046,17 +2022,6 @@ MonoBehaviour:
   moveSpeed: 2.5
   camera_acceleration: .100000001
   playerDirection: {x: 1, y: 0}
---- !u!114 &2027583949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2027583941}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92208c6500548184d80271b89a6200bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2116501905
 GameObject:
   m_ObjectHideFlags: 0

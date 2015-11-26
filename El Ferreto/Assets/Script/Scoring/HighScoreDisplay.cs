@@ -40,17 +40,12 @@ public class HighScoreDisplay : MonoBehaviour
         // Use this for initialization
         void Start()
     {
-        ScoreText.text = "Total Score: " + PlayerPrefs.GetInt("PlayerScore");
-        NameInput = gameObject.GetComponent<InputField>();
-        Submit = new InputField.SubmitEvent();
-        Submit.AddListener(SubmitInput);
-        NameInput.onEndEdit = Submit;
         HighScoresToString();
     }
 
-    private void SubmitInput(String strName)
+    private void SubmitName(string arg0)
     {
-        Debug.Log(Name);
+        Debug.Log(arg0);
     }
 
     void HighScoresToString()
