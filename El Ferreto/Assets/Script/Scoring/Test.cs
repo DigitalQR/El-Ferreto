@@ -8,17 +8,14 @@ public class Test : MonoBehaviour {
     void Start()
     {
         var input = gameObject.GetComponent<InputField>();
-        var submit = new InputField.SubmitEvent();
-        se.AddListener(SubmitName);
-        input.onEndEdit = se;
-
-        //or simply use the line below, 
-        //input.onEndEdit.AddListener(SubmitName);  // This also works
+        var Submit = new InputField.SubmitEvent();
+        Submit.AddListener(SubmitName);
+        input.onEndEdit = Submit;
     }
 
     private void SubmitName(string Name)
     {
-        PlayerPrefs.SetInt("Name", Name);
+        PlayerPrefs.SetString("Name", Name);
         Debug.Log(Name);
     }
 }
