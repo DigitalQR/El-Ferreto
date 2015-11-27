@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     public bool keyboard_controlled = false;
 
     private Vector2 movement_force = new Vector2();
+    public AudioClip jump_sound;
 
     void Start()
     {
@@ -26,6 +27,8 @@ public class Movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Grounding>();
         anim = gameObject.GetComponent<Animator>();
+        
+        
     }
 
     void Update()
@@ -109,6 +112,11 @@ public class Movement : MonoBehaviour
         //If the player is on the ground and they jump
         body.velocity += new Vector2(0f, jump_height);
         ground.setTouchingGround(false);
+
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+        
+        
     }
 
     //Has the player tried to jump
@@ -130,10 +138,5 @@ public class Movement : MonoBehaviour
     {
         return Math.Abs(jump_state[0] - jump_state[jump_state.Length - 1]);
     }
-
-    //For debugging purposes only
-    void OnGUI()
-    {
-        //GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround() + "\n" + body.velocity + " " + body.velocity.normalized);
-    }
+   
 }

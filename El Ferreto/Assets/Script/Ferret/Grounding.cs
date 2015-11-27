@@ -31,6 +31,7 @@ public class Grounding : MonoBehaviour {
     void OnCollisionExit2D(Collision2D collision_object)
     {
         if (collision_object.gameObject == ground_object) touching_ground = false;
+        
     }
 
     public bool isTouchingGround() {

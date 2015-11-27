@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/mainmenu.unity
   - enabled: 1
-    path: Assets/shop.unity
-  - enabled: 1
     path: Assets/default.unity
+  - enabled: 1
+    path: Assets/shop.unity
   - enabled: 1
     path: Assets/gameover.unity

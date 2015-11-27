@@ -29,4 +29,5 @@ public class KillPlayer : MonoBehaviour {
     {
         Application.LoadLevel("gameover");
     }
+
 }
