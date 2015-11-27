@@ -31,4 +31,5 @@ public class KillPlayer : MonoBehaviour {
         levelManager.RespawnPlayer();
         Application.LoadLevel(Application.loadedLevel);
     }
+
 }

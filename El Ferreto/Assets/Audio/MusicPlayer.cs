@@ -2,29 +2,42 @@
 using System.Collections;
 
 public class MusicPlayer : MonoBehaviour {
-
+    
     public AudioClip[] clips;
     private AudioSource audioSource;
 
+   
 	// Use this for initialization
 	void Start () {
-        audioSource = FindObjectOfType<AudioSource>();
+        
+        audioSource = GetComponent<AudioSource>();
         audioSource.loop = false;
+        
 	}
 	
     private AudioClip GetRandomClip()
-        {
-	        return clips[Random.Range(0, clips.Length)]; //looking for audio clips from 0 to n of clips
-        }
+    {
+	    return clips[Random.Range(0, clips.Length)]; //looking for audio clips from 0 to n of clips
+    }
 
 
 	// Update is called once per frame
 	void Update () {
-	    if (!audioSource.isPlaying)
+
+        if (!audioSource.isPlaying) //if no music is playing
         {
-            audioSource.clip = GetRandomClip();
-            audioSource.Play();
+            audioSource.clip = GetRandomClip(); //pick a random song clip
+            audioSource.Play();  //play song
+	    }   
         
-        }
-	}
+    }
+
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+
 }
+
