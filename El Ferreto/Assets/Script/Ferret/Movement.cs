@@ -120,7 +120,7 @@ public class Movement : MonoBehaviour
     }
 
     //Has the player tried to jump
-    bool hasJumped()
+    public bool hasJumped()
     {
         if (keyboard_controlled) return Input.GetKeyDown(KeyCode.W);
 
