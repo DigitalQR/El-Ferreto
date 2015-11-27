@@ -17,17 +17,16 @@ public class Scoring : MonoBehaviour
     //variables used for highscores
     public String Name;
     public String OldName;
-    const String HighScoreKey = "HighScore";
-    const String HighScoreNameKey = "HighScoreName";
+    public const String HighScoreKey = "Score";
+    public const String HighScoreNameKey = "ScoreName";
     int OldScore;
-    int TotalScore;
+    public int TotalScore;
     int Currency;
 
     //variables used in displaying the various text components
     public float _fontSize;
     public Text DistText;
     public Text TrickText;
-    public Text ScoreText;
 
     //variable for calculating trick score
     private const int PointsPerFlip = 3;
@@ -37,7 +36,6 @@ public class Scoring : MonoBehaviour
     {
         lastPosition = transform.position.x; //takes initial position of ferret
         _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; //sets the font size to be used by the game, scales with resolution and aspect ratio
-        ScoreText.fontSize = (int)_fontSize;
         DistText.fontSize = (int)_fontSize;
         TrickText.fontSize = (int)_fontSize / 2;
     }
@@ -53,7 +51,7 @@ public class Scoring : MonoBehaviour
             furthestDistance = Distance;
         }
 
-        DistText.text = "distance:" + furthestDistance;
+        DistText.text = "Distance:" + furthestDistance;
         TrickText.text = "Tricks:" + TrickScore;
     }
 
@@ -61,7 +59,7 @@ public class Scoring : MonoBehaviour
     {
         TotalScore = furthestDistance + TrickScore;
         AddToCurrency(TotalScore);
-        StoreScore(TotalScore);
+        PlayerPrefs.SetInt("PlayerScore", TotalScore); //to pass to other scripts in different scenes
     }
 
     public void addToTrickScore(int amount)
@@ -75,51 +73,7 @@ public class Scoring : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             PlayerPrefs.SetInt(i + HighScoreKey, 0);
-            PlayerPrefs.SetString(i + "HScoreName", Name);
-        }
-    }
-
-    public void StoreScore(int TotalScore)
-    {
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (PlayerPrefs.HasKey(i + HighScoreKey))//first checks if the entries for high scores exist
-            {
-                if (PlayerPrefs.GetInt(i + HighScoreKey) < TotalScore) //checks if the new score is higher than the other scores
-                {
-                    OldScore = PlayerPrefs.GetInt(i + HighScoreKey);
-                    OldName = PlayerPrefs.GetString(i + "HScoreName");
-                    PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
-                    PlayerPrefs.SetString(i + "HScoreName", Name);
- 
-                    for (int n = i + 1; n < 10; n++)//for moving other entires down by 1
-                    {
-                        if (PlayerPrefs.HasKey(n + HighScoreKey)) //checks if entry exists
-                        {
-                            int tempScore = PlayerPrefs.GetInt(n + HighScoreKey); //scores are temporarilly stored in order to be moved as required
-                            String tempName = PlayerPrefs.GetString(n + "HScoreName");
-                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore); //Old score moved down to the next space on the table
-                            PlayerPrefs.SetString(n + "HScoreName", OldName);
-                            OldScore = tempScore; //old score set so the next score can be shifted down
-                            OldName = tempName;
-                        }                   
-                        else //if the entry in the list dosent exist it needs to be made
-                        {
-                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
-                            PlayerPrefs.SetString(n + "HScoreName", OldName);
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            else //if The entry in the table doesn't exist, it's created
-            {
-                PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
-                PlayerPrefs.SetString(i + "HScoreName", Name);
-                break;
-            }
+            PlayerPrefs.SetString(i + HighScoreNameKey, Name);
         }
     }
 
@@ -131,8 +85,6 @@ public class Scoring : MonoBehaviour
         }
         else //if key dosent exist, create it
             PlayerPrefs.SetInt("Currency", TotalScore);
-
-        Debug.Log(PlayerPrefs.GetInt("Currency"));
     }
 }
 
