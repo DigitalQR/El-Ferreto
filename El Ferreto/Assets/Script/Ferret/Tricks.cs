@@ -6,7 +6,7 @@ public class Tricks : MonoBehaviour
 
     private Rigidbody2D body;
     private Movement movement_script;
-    private bool trick_mode = false;
+    public bool trick_mode = false;
 
     private Vector2 touch_start = new Vector2();
     private Vector2 touch_end = new Vector2();
