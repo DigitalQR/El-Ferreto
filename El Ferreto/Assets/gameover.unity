@@ -315,10 +315,10 @@ RectTransform:
   - {fileID: 1894416806}
   m_Father: {fileID: 1999907452}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: .5}
-  m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: .000232696533, y: -2.28881836e-05}
-  m_SizeDelta: {x: -138, y: 422.332001}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: .000232696533, y: -3.6239624e-05}
+  m_SizeDelta: {x: -138, y: -77.6679993}
   m_Pivot: {x: .5, y: .5}
 --- !u!222 &205628492
 CanvasRenderer:

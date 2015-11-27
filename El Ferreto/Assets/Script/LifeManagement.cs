@@ -25,7 +25,7 @@ public class LifeManagement : MonoBehaviour
 
         if ((int)Health <= 0)
         {
-            GetComponent<Scoring>().OnPlayerDeath();
+            GetComponent<KillPlayer>().kill();
         }
 
         if (Health == 3)
@@ -45,6 +45,13 @@ public class LifeManagement : MonoBehaviour
         if (Health == 1)
         {
             heart_1.SetActive(true);
+            heart_2.SetActive(false);
+            heart_3.SetActive(false);
+        }
+
+        if (Health == 0)
+        {
+            heart_1.SetActive(false);
             heart_2.SetActive(false);
             heart_3.SetActive(false);
         }

@@ -12,7 +12,7 @@ public class HighScoreDisplay : MonoBehaviour
     int OldScore;
     public int TotalScore;
     int Currency;
-
+    
     public Text ScoreText;
     public Text Name;
     string PlayerName;
@@ -123,15 +123,15 @@ public class HighScoreDisplay : MonoBehaviour
         String StrScore7 = Temp7.ToString();
         String StrScore8 = Temp8.ToString();
         String StrScore9 = Temp9.ToString();
-        HighScore.text = (PlayerPrefs.GetString(0 + HighScoreNameKey) + StrHighScore); //Strings are combined it to the text objects required for displaying
-        Score1.text = (PlayerPrefs.GetString(1 + HighScoreNameKey) + StrScore1);
-        Score2.text = (PlayerPrefs.GetString(2 + HighScoreNameKey) + StrScore2);
-        Score3.text = (PlayerPrefs.GetString(3 + HighScoreNameKey) + StrScore3);
-        Score4.text = (PlayerPrefs.GetString(4 + HighScoreNameKey) + StrScore4);
-        Score5.text = (PlayerPrefs.GetString(5 + HighScoreNameKey) + StrScore5);
-        Score6.text = (PlayerPrefs.GetString(6 + HighScoreNameKey) + StrScore6);
-        Score7.text = (PlayerPrefs.GetString(7 + HighScoreNameKey) + StrScore7);
-        Score8.text = (PlayerPrefs.GetString(8 + HighScoreNameKey) + StrScore8);
-        Score9.text = (PlayerPrefs.GetString(9 + HighScoreNameKey) + StrScore9);
+        HighScore.text = (PlayerPrefs.GetString(0 + HighScoreNameKey) + " " + StrHighScore); //Strings are combined it to the text objects required for displaying
+        Score1.text = (PlayerPrefs.GetString(1 + HighScoreNameKey) + " " + StrScore1);
+        Score2.text = (PlayerPrefs.GetString(2 + HighScoreNameKey) + " " + StrScore2);
+        Score3.text = (PlayerPrefs.GetString(3 + HighScoreNameKey) + " " + StrScore3);
+        Score4.text = (PlayerPrefs.GetString(4 + HighScoreNameKey) + " " + StrScore4);
+        Score5.text = (PlayerPrefs.GetString(5 + HighScoreNameKey) + " " + StrScore5);
+        Score6.text = (PlayerPrefs.GetString(6 + HighScoreNameKey) + " " + StrScore6);
+        Score7.text = (PlayerPrefs.GetString(7 + HighScoreNameKey) + " " + StrScore7);
+        Score8.text = (PlayerPrefs.GetString(8 + HighScoreNameKey) + " " + StrScore8);
+        Score9.text = (PlayerPrefs.GetString(9 + HighScoreNameKey) + " " + StrScore9);
     }
 }
