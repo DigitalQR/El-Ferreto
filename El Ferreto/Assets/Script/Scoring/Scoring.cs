@@ -59,8 +59,7 @@ public class Scoring : MonoBehaviour
     {
         TotalScore = furthestDistance + TrickScore;
         AddToCurrency(TotalScore);
-        StoreScore(TotalScore);
-        PlayerPrefs.SetInt("PlayerScore", TotalScore);
+        PlayerPrefs.SetInt("PlayerScore", TotalScore); //to pass to other scripts in different scenes
     }
 
     public void addToTrickScore(int amount)
@@ -75,50 +74,6 @@ public class Scoring : MonoBehaviour
         {
             PlayerPrefs.SetInt(i + HighScoreKey, 0);
             PlayerPrefs.SetString(i + HighScoreNameKey, Name);
-        }
-    }
-
-    public void StoreScore(int TotalScore)
-    {
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (PlayerPrefs.HasKey(i + HighScoreKey))//first checks if the entries for high scores exist
-            {
-                if (PlayerPrefs.GetInt(i + HighScoreKey) < TotalScore) //checks if the new score is higher than the other scores
-                {
-                    OldScore = PlayerPrefs.GetInt(i + HighScoreKey);
-                    OldName = PlayerPrefs.GetString(i + HighScoreNameKey);
-                    PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
-                    PlayerPrefs.SetString(i + HighScoreNameKey, Name);
- 
-                    for (int n = i + 1; n < 10; n++)//for moving other entires down by 1
-                    {
-                        if (PlayerPrefs.HasKey(n + HighScoreKey)) //checks if entry exists
-                        {
-                            int tempScore = PlayerPrefs.GetInt(n + HighScoreKey); //scores are temporarilly stored in order to be moved as required
-                            String tempName = PlayerPrefs.GetString(n + HighScoreNameKey);
-                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore); //Old score moved down to the next space on the table
-                            PlayerPrefs.SetString(n + HighScoreNameKey, OldName);
-                            OldScore = tempScore; //old score set so the next score can be shifted down
-                            OldName = tempName;
-                        }                   
-                        else //if the entry in the list dosent exist it needs to be made
-                        {
-                            PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
-                            PlayerPrefs.SetString(n + HighScoreNameKey, OldName);
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-            else //if The entry in the table doesn't exist, it's created
-            {
-                PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
-                PlayerPrefs.SetString(i + HighScoreNameKey, Name);
-                break;
-            }
         }
     }
 

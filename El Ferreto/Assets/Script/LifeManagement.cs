@@ -25,7 +25,7 @@ public class LifeManagement : MonoBehaviour
 
         if ((int)Health <= 0)
         {
-            GetComponent<KillPlayer>().kill();
+            GetComponent<Scoring>().OnPlayerDeath();
         }
 
         if (Health == 3)

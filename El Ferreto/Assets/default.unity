@@ -2259,10 +2259,10 @@ MonoBehaviour:
   Distance: 0
   Name: 
   OldName: 
+  TotalScore: 0
   _fontSize: 0
   DistText: {fileID: 348549715}
   TrickText: {fileID: 285391214}
-  ScoreText: {fileID: 0}
 --- !u!114 &594207300
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,12 +5,17 @@ using System;
 
 public class HighScoreDisplay : MonoBehaviour
 {
+    //variables used for highscores
+    public String OldName;
+    public const String HighScoreKey = "Score";
+    public const String HighScoreNameKey = "ScoreName";
+    int OldScore;
+    public int TotalScore;
+    int Currency;
 
     public Text ScoreText;
     public Text Name;
-    public InputField NameInput;
-    InputField.SubmitEvent Submit;
-    string strName;
+    string PlayerName;
     public Text HighScore;
     public Text HighName;
     public Text Score1;
@@ -32,21 +37,69 @@ public class HighScoreDisplay : MonoBehaviour
     public Text Score9;
     public Text Name9;
 
+    public GameObject InputPanel;
+    public GameObject DisplayPanel;
 
-       
-
-
-
-        // Use this for initialization
-        void Start()
+    void start()
     {
+        InputPanel.SetActive(true);
+        DisplayPanel.SetActive(false);
+    }
+
+    void Update()
+    {
+        PlayerName = PlayerPrefs.GetString("PlayerName");
+        TotalScore = PlayerPrefs.GetInt("PlayerScore");
+        StoreScore(TotalScore);
         HighScoresToString();
     }
 
-    private void SubmitName(string arg0)
+
+    public void StoreScore(int TotalScore)
     {
-        Debug.Log(arg0);
+        for (int i = 0; i < 10; i++)
+            {
+                if (PlayerPrefs.HasKey(i + Scoring.HighScoreKey))//first checks if the entries for high scores exist
+                {
+                    if (PlayerPrefs.GetInt(i + Scoring.HighScoreKey) < TotalScore) //checks if the new score is higher than the other scores
+                    {
+                        OldScore = PlayerPrefs.GetInt(i + HighScoreKey);
+                        OldName = PlayerPrefs.GetString(i + HighScoreNameKey);
+                        PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
+                        PlayerPrefs.SetString(i + HighScoreNameKey, PlayerName);
+                        PlayerPrefs.SetInt("PlayerScore", 0);
+
+                        for (int n = i + 1; n < 10; n++)//for moving other entires down by 1
+                        {
+                            if (PlayerPrefs.HasKey(n + HighScoreKey)) //checks if entry exists
+                            {
+                                int tempScore = PlayerPrefs.GetInt(n + HighScoreKey); //scores are temporarilly stored in order to be moved as required
+                                String tempName = PlayerPrefs.GetString(n + HighScoreNameKey);
+                                PlayerPrefs.SetInt(n + HighScoreKey, OldScore); //Old score moved down to the next space on the table
+                                PlayerPrefs.SetString(n + HighScoreNameKey, OldName);
+                                OldScore = tempScore; //old score set so the next score can be shifted down
+                                OldName = tempName;
+                            }
+                            else //if the entry in the list dosent exist it needs to be made
+                            {
+                                PlayerPrefs.SetInt(n + HighScoreKey, OldScore);
+                                PlayerPrefs.SetString(n + HighScoreNameKey, OldName);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                else //if The entry in the table doesn't exist, it's created
+                {
+                    PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
+                    PlayerPrefs.SetString(i + HighScoreNameKey, PlayerName);
+                    PlayerPrefs.SetInt("PlayerScore", 0);
+                    break;
+                }
+            }
     }
+
 
     void HighScoresToString()
     {   //because of how player prefs handles values, to convert an integer to a string the integer needs to be stored in a temporaty variable THEN converted to string
@@ -70,15 +123,15 @@ public class HighScoreDisplay : MonoBehaviour
         String StrScore7 = Temp7.ToString();
         String StrScore8 = Temp8.ToString();
         String StrScore9 = Temp9.ToString();
-        HighScore.text = (PlayerPrefs.GetString(0 + Scoring.HighScoreNameKey) + StrHighScore); //Strings are combined it to the text objects required for displaying
-        Score1.text = (PlayerPrefs.GetString(1 + Scoring.HighScoreNameKey) + StrScore1);
-        Score2.text = (PlayerPrefs.GetString(2 + Scoring.HighScoreNameKey) + StrScore2);
-        Score3.text = (PlayerPrefs.GetString(3 + Scoring.HighScoreNameKey) + StrScore3);
-        Score4.text = (PlayerPrefs.GetString(4 + Scoring.HighScoreNameKey) + StrScore4);
-        Score5.text = (PlayerPrefs.GetString(5 + Scoring.HighScoreNameKey) + StrScore5);
-        Score6.text = (PlayerPrefs.GetString(6 + Scoring.HighScoreNameKey) + StrScore6);
-        Score7.text = (PlayerPrefs.GetString(7 + Scoring.HighScoreNameKey) + StrScore7);
-        Score8.text = (PlayerPrefs.GetString(8 + Scoring.HighScoreNameKey) + StrScore8);
-        Score9.text = (PlayerPrefs.GetString(9 + Scoring.HighScoreNameKey) + StrScore9);
+        HighScore.text = (PlayerPrefs.GetString(0 + HighScoreNameKey) + StrHighScore); //Strings are combined it to the text objects required for displaying
+        Score1.text = (PlayerPrefs.GetString(1 + HighScoreNameKey) + StrScore1);
+        Score2.text = (PlayerPrefs.GetString(2 + HighScoreNameKey) + StrScore2);
+        Score3.text = (PlayerPrefs.GetString(3 + HighScoreNameKey) + StrScore3);
+        Score4.text = (PlayerPrefs.GetString(4 + HighScoreNameKey) + StrScore4);
+        Score5.text = (PlayerPrefs.GetString(5 + HighScoreNameKey) + StrScore5);
+        Score6.text = (PlayerPrefs.GetString(6 + HighScoreNameKey) + StrScore6);
+        Score7.text = (PlayerPrefs.GetString(7 + HighScoreNameKey) + StrScore7);
+        Score8.text = (PlayerPrefs.GetString(8 + HighScoreNameKey) + StrScore8);
+        Score9.text = (PlayerPrefs.GetString(9 + HighScoreNameKey) + StrScore9);
     }
 }
