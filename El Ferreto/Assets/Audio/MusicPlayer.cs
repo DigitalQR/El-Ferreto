@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MusicPlayer : MonoBehaviour {
     
+    public static bool exists = false;
+
     public AudioClip[] clips;
     private AudioSource audioSource;
 
@@ -12,6 +14,11 @@ public class MusicPlayer : MonoBehaviour {
         
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = false;
+
+        if (exists)
+        {
+            Destroy(this.gameObject);
+        }else exists = true;
         
 	}
 	
