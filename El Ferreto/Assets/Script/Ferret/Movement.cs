@@ -19,7 +19,6 @@ public class Movement : MonoBehaviour
     public bool keyboard_controlled = false;
 
     private Vector2 movement_force = new Vector2();
-    public AudioClip jump_sound;
 
     void Start()
     {

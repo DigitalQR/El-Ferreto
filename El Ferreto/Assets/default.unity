@@ -920,8 +920,7 @@ MonoBehaviour:
   movement_magnitude: 1000
   max_speed: 400
   jump_height: 9
-  keyboard_controlled: 1
-  jump_sound: {fileID: 0}
+  keyboard_controlled: 0
 --- !u!50 &381661852
 Rigidbody2D:
   serializedVersion: 2
