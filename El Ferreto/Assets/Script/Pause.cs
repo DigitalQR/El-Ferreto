@@ -37,11 +37,10 @@ public class Pause : MonoBehaviour {
 
 	}
 
-	public void Exit()
+	public void backToMainMenu()
 	{
-
-		Application.Quit ();
-
+		Application.LoadLevel("mainmenu"); 
+		
 	}
 
 }

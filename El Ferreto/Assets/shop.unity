@@ -530,7 +530,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .528546751, g: .68652904, b: .764705896, a: .0196078438}
+  m_BackGroundColor: {r: .639215708, g: .639215708, b: .639215708, a: .156862751}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: .720000029
@@ -4644,9 +4644,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'BACK
-
-'
+  m_Text: 
 --- !u!222 &668015835
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10032,15 +10030,15 @@ RectTransform:
   m_GameObject: {fileID: 1357564202}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 668015836}
   m_Father: {fileID: 1347745602}
   m_RootOrder: 0
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -106, y: -38}
-  m_SizeDelta: {x: 186, y: 45}
+  m_AnchoredPosition: {x: -89.3000031, y: -38}
+  m_SizeDelta: {x: 94.6999969, y: 25.5}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1357564204
 MonoBehaviour:
@@ -10062,7 +10060,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: .352941155, g: .83935082, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: .448529422, b: .448529422, a: 1}
+    m_HighlightedColor: {r: .786764741, g: .792549789, b: .792549789, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
@@ -10113,8 +10111,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 962a795d95888ea40b56bbbcf085fe92, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a2dfc707ecf7c31429fd7c208a67b85f, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -13835,7 +13833,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .528546751, g: .68652904, b: .764705896, a: .0196078438}
+  m_BackGroundColor: {r: .639705896, g: .639705896, b: .639705896, a: .156862751}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
