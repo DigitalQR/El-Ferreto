@@ -8,11 +8,15 @@ public class SubmitButton : MonoBehaviour
     public Text ScoreText;
     public GameObject InputPanel;
     public GameObject DisplayPanel;
+    public GameObject ClapButton;
+	String PlayerName;
+	String CheckEgg;
 
     void start()
     {
         InputPanel.SetActive(true);
         DisplayPanel.SetActive(false);
+        ClapButton.SetActive(false);
     }
 
     
@@ -24,8 +28,18 @@ public class SubmitButton : MonoBehaviour
     public void SubmitName()
     {
         GameObject inputField = GameObject.FindWithTag("Input");
-        String PlayerName = inputField.GetComponent<InputField>().text;
+        PlayerName = inputField.GetComponent<InputField>().text;
         PlayerPrefs.SetString("PlayerName", PlayerName);
+		CheckEgg = PlayerName.ToUpper ();
+        if (CheckEgg == "IAN")
+        {
+            PlayerPrefs.SetInt("Ian", 1);
+            ClapButton.SetActive(true);
+        }
+        else if (PlayerName == "RICHARD")
+        {
+            PlayerPrefs.SetInt("Richard", 1);
+        }    
         Debug.Log(PlayerName);
         InputPanel.SetActive(false);
         DisplayPanel.SetActive(true);

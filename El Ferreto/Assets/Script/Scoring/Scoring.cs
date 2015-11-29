@@ -73,7 +73,8 @@ public class Scoring : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             PlayerPrefs.SetInt(i + HighScoreKey, 0);
-            PlayerPrefs.SetString(i + HighScoreNameKey, Name);
+            PlayerPrefs.SetString(i + HighScoreNameKey, " ");
+            PlayerPrefs.SetInt("Currency", 0);
         }
     }
 
