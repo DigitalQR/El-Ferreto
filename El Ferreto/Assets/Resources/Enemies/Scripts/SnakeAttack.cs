@@ -10,6 +10,13 @@ public class SnakeAttack : MonoBehaviour
     private bool can_fire = true;
 
     public GameObject fireball;
+    private bool ferret_in_range = false;
+    private GameObject ferret;
+
+    void Start()
+    {
+        ferret = GameObject.Find("ferret");
+    }
 
     void Update()
     {
@@ -26,13 +33,27 @@ public class SnakeAttack : MonoBehaviour
         if (fire_time >= current_state && can_fire)
         {
             can_fire = false;
-            Fire();
+            if(ferret_in_range) Fire();
         }
+        
     }
 
     void Fire()
     {
         GameObject spitball = Instantiate(fireball);
         spitball.transform.position = transform.position;
+        spitball.transform.parent = transform;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "ferret")
+            ferret_in_range = true;
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.name == "ferret")
+            ferret_in_range = false;
     }
 }
