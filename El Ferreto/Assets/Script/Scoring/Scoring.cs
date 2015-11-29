@@ -51,8 +51,8 @@ public class Scoring : MonoBehaviour
             furthestDistance = Distance;
         }
 
-        DistText.text = "Distance:" + furthestDistance;
-        TrickText.text = "Tricks:" + TrickScore;
+        DistText.text = "Distance: " + furthestDistance;
+        TrickText.text = "Tricks: " + TrickScore;
     }
 
     public void OnPlayerDeath() //when the player dies highscores are updated and currency is added
