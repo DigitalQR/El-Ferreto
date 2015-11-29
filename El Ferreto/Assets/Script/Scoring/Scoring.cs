@@ -28,7 +28,7 @@ public class Scoring : MonoBehaviour
     public Text TrickText;
 
     //variable for calculating trick score
-    private const int PointsPerFlip = 3;
+    private const int PointsPerFlip = 5;
 
 
     void Start()
