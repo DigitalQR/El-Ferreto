@@ -1,14 +1,2 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 m_EditorVersion: 5.2.2f1
-=======
-<<<<<<< HEAD
-m_EditorVersion: 5.2.0f3
-=======
-m_EditorVersion: 5.2.2f1
->>>>>>> origin/Tutorial
->>>>>>> origin/develop
-=======
-m_EditorVersion: 5.2.0f3
->>>>>>> origin/Score-is-life
 m_StandardAssetsVersion: 0
