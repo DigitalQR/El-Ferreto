@@ -24,7 +24,6 @@ public class Scoring : MonoBehaviour
     int Currency;
 
     //variables used in displaying the various text components
-    public float _fontSize;
     public Text DistText;
     public Text TrickText;
 
@@ -35,9 +34,6 @@ public class Scoring : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position.x; //takes initial position of ferret
-        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20; //sets the font size to be used by the game, scales with resolution and aspect ratio
-        DistText.fontSize = (int)_fontSize;
-        TrickText.fontSize = (int)_fontSize / 2;
     }
 
     void Update()
