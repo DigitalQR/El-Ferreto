@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_name: Rainbow
-  item_price: 800
+  item_price: 1000
 --- !u!114 &11495996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -168,7 +168,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: item_price
-      value: 800
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: item_name

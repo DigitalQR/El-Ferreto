@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_name: Tank
-  item_price: 1000
+  item_price: 1500
 --- !u!212 &21209848
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,7 +105,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: item_price
-      value: 1000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SortingOrder

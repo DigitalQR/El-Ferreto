@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item_name: Chilly Nips
-  item_price: 100
+  item_price: 300
 --- !u!114 &11420526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1187,7 +1187,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: item_price
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.x
