@@ -8,7 +8,7 @@ public class HighScoreDisplay : MonoBehaviour
     //variables used for highscores
     public String OldName;
     public const String HighScoreKey = "Score";
-    public const String HighScoreNameKey = "ScoreName";
+    public const String HighScoreNameKey = "Name";
     int OldScore;
     public int TotalScore;
     int Currency;
@@ -103,35 +103,27 @@ public class HighScoreDisplay : MonoBehaviour
 
     void HighScoresToString()
     {   //because of how player prefs handles values, to convert an integer to a string the integer needs to be stored in a temporaty variable THEN converted to string
-        int Temp0 = PlayerPrefs.GetInt("0Score");
-        int Temp1 = PlayerPrefs.GetInt("1Score");
-        int Temp2 = PlayerPrefs.GetInt("2Score");
-        int Temp3 = PlayerPrefs.GetInt("3Score");
-        int Temp4 = PlayerPrefs.GetInt("4Score");
-        int Temp5 = PlayerPrefs.GetInt("5Score");
-        int Temp6 = PlayerPrefs.GetInt("6Score");
-        int Temp7 = PlayerPrefs.GetInt("7Score");
-        int Temp8 = PlayerPrefs.GetInt("8Score");
-        int Temp9 = PlayerPrefs.GetInt("9Score");
-        String StrHighScore = Temp0.ToString(); //ints are converted to the strings to be thenb converted to text objects
-        String StrScore1= Temp1.ToString();
-        String StrScore2= Temp2.ToString();
-        String StrScore3= Temp3.ToString();
-        String StrScore4 = Temp4.ToString();
-        String StrScore5 = Temp5.ToString();
-        String StrScore6 = Temp6.ToString();
-        String StrScore7 = Temp7.ToString();
-        String StrScore8 = Temp8.ToString();
-        String StrScore9 = Temp9.ToString();
-        HighScore.text = (PlayerPrefs.GetString(0 + HighScoreNameKey) + " " + StrHighScore); //Strings are combined it to the text objects required for displaying
-        Score1.text = (PlayerPrefs.GetString(1 + HighScoreNameKey) + " " + StrScore1);
-        Score2.text = (PlayerPrefs.GetString(2 + HighScoreNameKey) + " " + StrScore2);
-        Score3.text = (PlayerPrefs.GetString(3 + HighScoreNameKey) + " " + StrScore3);
-        Score4.text = (PlayerPrefs.GetString(4 + HighScoreNameKey) + " " + StrScore4);
-        Score5.text = (PlayerPrefs.GetString(5 + HighScoreNameKey) + " " + StrScore5);
-        Score6.text = (PlayerPrefs.GetString(6 + HighScoreNameKey) + " " + StrScore6);
-        Score7.text = (PlayerPrefs.GetString(7 + HighScoreNameKey) + " " + StrScore7);
-        Score8.text = (PlayerPrefs.GetString(8 + HighScoreNameKey) + " " + StrScore8);
-        Score9.text = (PlayerPrefs.GetString(9 + HighScoreNameKey) + " " + StrScore9);
+        Score1.text = (PlayerPrefs.GetInt("1Score")).ToString();
+		Score2.text = (PlayerPrefs.GetInt("2Score")).ToString();
+		Score3.text = (PlayerPrefs.GetInt("3Score")).ToString();
+		Score4.text = (PlayerPrefs.GetInt("4Score")).ToString();
+		Score5.text = (PlayerPrefs.GetInt("5Score")).ToString();
+		Score6.text = (PlayerPrefs.GetInt("6Score")).ToString();
+		Score7.text = (PlayerPrefs.GetInt("7Score")).ToString();
+		Score8.text = (PlayerPrefs.GetInt("8Score")).ToString();
+		Score9.text = (PlayerPrefs.GetInt("9Score")).ToString();
+		HighScore.text = (PlayerPrefs.GetInt("0Score")).ToString();
+		HighName.text = PlayerPrefs.GetString("0Name");
+		Name1.text = PlayerPrefs.GetString("1Name");
+		Name2.text = PlayerPrefs.GetString("2Name");
+		Name3.text = PlayerPrefs.GetString("3Name");
+		Name4.text = PlayerPrefs.GetString("4Name");
+		Name5.text = PlayerPrefs.GetString("5Name");
+		Name6.text = PlayerPrefs.GetString("6Name");
+		Name7.text = PlayerPrefs.GetString("7Name");
+		Name8.text = PlayerPrefs.GetString("8Name");
+		Name9.text = PlayerPrefs.GetString("9Name");
+
+     
     }
 }

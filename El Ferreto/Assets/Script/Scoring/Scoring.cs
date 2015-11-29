@@ -18,7 +18,7 @@ public class Scoring : MonoBehaviour
     public String Name;
     public String OldName;
     public const String HighScoreKey = "Score";
-    public const String HighScoreNameKey = "ScoreName";
+    public const String HighScoreNameKey = "Name";
     int OldScore;
     public int TotalScore;
     int Currency;

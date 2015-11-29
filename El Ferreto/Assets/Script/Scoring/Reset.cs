@@ -9,7 +9,7 @@ public class Reset : MonoBehaviour {
 	{
 		for (int i = 0; i < 10; i++) {
 			PlayerPrefs.SetInt (i + "Score", 0);
-			PlayerPrefs.SetString (i + "ScoreName", " ");
+			PlayerPrefs.SetString (i + "Name", " ");
 			PlayerPrefs.SetInt ("Currency", 0);
 		}
 	}
