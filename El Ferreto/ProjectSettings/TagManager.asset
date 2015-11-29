@@ -7,6 +7,9 @@ TagManager:
   - building
   - ground
   - Input
+  - PrefabStart
+  - PrefabEnd
+  - Enemy
   layers:
   - Default
   - TransparentFX

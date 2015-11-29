@@ -27,4 +27,15 @@ public class SpitballScript : MonoBehaviour {
             body.rotation *= -1;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject game_object = collision.gameObject;
+
+        if (game_object.name == "ferret")
+        {
+            game_object.GetComponent<LifeManagement>().decreaseLife();
+            Destroy(this.gameObject);
+        }
+    }
 }
