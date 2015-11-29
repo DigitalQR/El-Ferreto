@@ -67,6 +67,7 @@ public class Outfiter : MonoBehaviour
             hat_pointer = new_hat;
 
             new_hat.transform.Translate(transform.position);
+            new_hat.transform.localScale = transform.localScale;
             new_hat.transform.SetParent(transform);
 
             PlayerPrefs.SetString("equipped_hat", selected_hat.GetComponent<Item>().item_name);
@@ -90,6 +91,7 @@ public class Outfiter : MonoBehaviour
             effect_pointer = new_effect;
 
             new_effect.transform.Translate(new Vector3(transform.position.x, transform.position.y, 0));
+            new_effect.transform.localScale = transform.localScale;
             new_effect.transform.SetParent(transform);
 
             PlayerPrefs.SetString("equipped_effect", selected_effect.GetComponent<Item>().item_name);
