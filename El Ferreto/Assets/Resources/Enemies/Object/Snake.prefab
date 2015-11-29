@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0bebdc3406d2e489e53ebfcc148e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire_time: .5
+  fire_time: .192000002
   fireball: {fileID: 167960, guid: 9d9ff943f33873f4e9fc02b382fcb422, type: 2}
 --- !u!212 &21264974
 SpriteRenderer:
@@ -153,6 +153,10 @@ Prefab:
       propertyPath: fireball
       value: 
       objectReference: {fileID: 167960, guid: 9d9ff943f33873f4e9fc02b382fcb422, type: 2}
+    - target: {fileID: 0}
+      propertyPath: fire_time
+      value: .192000002
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 178074}
