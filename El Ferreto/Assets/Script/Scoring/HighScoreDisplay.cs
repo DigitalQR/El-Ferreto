@@ -93,7 +93,7 @@ public class HighScoreDisplay : MonoBehaviour
                 else //if The entry in the table doesn't exist, it's created
                 {
                     PlayerPrefs.SetInt(i + HighScoreKey, TotalScore);
-                    PlayerPrefs.SetString(i + HighScoreNameKey, PlayerName);
+                    PlayerPrefs.SetString(i + HighScoreNameKey, " ");
                     PlayerPrefs.SetInt("PlayerScore", 0);
                     break;
                 }
