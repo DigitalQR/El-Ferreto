@@ -13,9 +13,9 @@ public class CameraMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        moveSpeed += camera_acceleration * Time.deltaTime;
+	void FixedUpdate () {
+        moveSpeed += camera_acceleration;
         
-        transform.Translate(playerDirection * moveSpeed * Time.deltaTime);
+        transform.Translate(playerDirection * moveSpeed);
 	}
 }

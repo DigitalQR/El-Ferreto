@@ -5,16 +5,15 @@ using System.Collections;
 public class LifeManagement : MonoBehaviour
 {
     public int Health;
-    public Text Healthk;
-    public float _fontSize;
     public LevelManager levelManager;
+
+    public GameObject heart_1, heart_2, heart_3;
+
 
 
     void Start()
     {
         Health = 3;
-        _fontSize = Mathf.Min(Screen.width, Screen.height) / 20;
-        Healthk.fontSize = (int)_fontSize;
     }
 
     public void decreaseLife() {
@@ -26,9 +25,38 @@ public class LifeManagement : MonoBehaviour
 
         if ((int)Health <= 0)
         {
+			GetComponentInParent<Scoring>().OnPlayerDeath();
             GetComponent<KillPlayer>().kill();
         }
-        Healthk.text = "Lives:" + Health; 
+
+        if (Health == 3)
+        {
+            heart_1.SetActive(true);
+            heart_2.SetActive(true);
+            heart_3.SetActive(true);
+        }
+        
+        if (Health == 2)
+        {
+            heart_1.SetActive(true);
+            heart_2.SetActive(true);
+            heart_3.SetActive(false);
+        }
+
+        if (Health == 1)
+        {
+            heart_1.SetActive(true);
+            heart_2.SetActive(false);
+            heart_3.SetActive(false);
+        }
+
+        if (Health == 0)
+        {
+            heart_1.SetActive(false);
+            heart_2.SetActive(false);
+            heart_3.SetActive(false);
+        }
+
     }
 
 

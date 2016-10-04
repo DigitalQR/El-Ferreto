@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
 
     public bool keyboard_controlled = false;
 
+    private Vector2 movement_force = new Vector2();
 
     void Start()
     {
@@ -25,6 +26,8 @@ public class Movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Grounding>();
         anim = gameObject.GetComponent<Animator>();
+        
+        
     }
 
     void Update()
@@ -47,12 +50,16 @@ public class Movement : MonoBehaviour
             jump(body);
         }
 
-        body.AddForce(movement * movement_magnitude * body.mass * Time.deltaTime);
+        movement_force = movement * movement_magnitude * body.mass * Time.deltaTime;
 
         //Ensure the current x velocity isn't greater than the max speed
-        if (Mathf.Abs(body.velocity.x) > max_speed) {
-            body.velocity = new Vector2(max_speed * Math.Sign(body.velocity.x), body.velocity.y);
+        if (Mathf.Abs(movement_force.x) > max_speed)
+        {
+            movement_force = new Vector2(max_speed * Math.Sign(movement_force.x), movement_force.y);
         }
+
+        body.AddForce(movement_force);
+        body.AddForce(body.mass * Camera.main.GetComponent<CameraMovement>().moveSpeed * new Vector2(1,0));
 
         animationUpdate();
     }
@@ -65,12 +72,22 @@ public class Movement : MonoBehaviour
         // setting speed condition for Animator
         anim.SetFloat("speed", Mathf.Abs(body.velocity.x));
 
+        float movement;
+        if (keyboard_controlled)
+        {
+            movement = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            movement = Input.acceleration.x;
+        }
+
         //Flip sprite to face correct direction
-        if (body.velocity.x < 0f)
+        if (movement < -0.1f)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        else if (body.velocity.x > 0f)
+        else if (movement > 0.1f)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
@@ -94,10 +111,15 @@ public class Movement : MonoBehaviour
         //If the player is on the ground and they jump
         body.velocity += new Vector2(0f, jump_height);
         ground.setTouchingGround(false);
+
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
+        
+        
     }
 
     //Has the player tried to jump
-    bool hasJumped()
+    public bool hasJumped()
     {
         if (keyboard_controlled) return Input.GetKeyDown(KeyCode.W);
 
@@ -115,10 +137,5 @@ public class Movement : MonoBehaviour
     {
         return Math.Abs(jump_state[0] - jump_state[jump_state.Length - 1]);
     }
-
-    //For debugging purposes only
-    void OnGUI()
-    {
-        //GUI.Label(new Rect(100, 10, 1000, 100), "Debug:\n" + body.position + "\n" + Input.acceleration + "\n" + (int)(getJumpMagnitude() * 100) / 100f + "\n" + ground.isTouchingGround() + "\n" + body.velocity + " " + body.velocity.normalized);
-    }
+   
 }

@@ -4,9 +4,10 @@ using System.Collections;
 public class Tricks : MonoBehaviour
 {
 
+    public ParticleSystem particles;
     private Rigidbody2D body;
     private Movement movement_script;
-    private bool trick_mode = false;
+    public bool trick_mode = false;
 
     private Vector2 touch_start = new Vector2();
     private Vector2 touch_end = new Vector2();
@@ -21,6 +22,7 @@ public class Tricks : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         movement_script = GetComponent<Movement>();
+        particles.enableEmission = false; 
     }
 
     void Update()
@@ -42,14 +44,15 @@ public class Tricks : MonoBehaviour
         if (vertical_swipe)
         {
             vertical_swipe = false;
-            leaveTrickMode();
-            calculateScore();
+			calculateScore();
+			leaveTrickMode();
         }
 
         if (trick_mode) {
             trickUpdate();
         }
-        else {
+        else
+        {
             body.rotation /= 1.3f;
         }
     }
@@ -71,15 +74,20 @@ public class Tricks : MonoBehaviour
 
         if (GetComponent<Grounding>().isTouchingGround()) {
             leaveTrickMode();
-            GetComponent<LifeManagement>().decreaseLife();
+
+            //Take damage, but only if ferret has not landed on it's feet
+            if (body.rotation > 45 || body.rotation < -45)
+            {
+                GetComponent<LifeManagement>().decreaseLife();
+            }
         }
     }
 
     //Calculates score based on how many flips the ferret has done
     void calculateScore()
     {
-        int score = (int)Mathf.Abs(body.rotation / 360f);
-        GetComponent<Scoring>().addToScore(score);
+        int amount = (int)Mathf.Abs(body.rotation / 360f);
+        GetComponent<Scoring>().addToTrickScore(amount);
     }
 
     void handleTouch()
@@ -87,6 +95,11 @@ public class Tricks : MonoBehaviour
         //Table touchscreen
         if (Input.touchCount > 0)
         {
+            
+            Vector2 position = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            particles.transform.position = position;
+            particles.enableEmission = true;
+
             //Only cares about first touch
             if (Input.GetTouch(0).phase == TouchPhase.Began)
             {
@@ -96,19 +109,30 @@ public class Tricks : MonoBehaviour
             {
                 touch_end = Input.GetTouch(0).position;
                 createLine();
+                particles.enableEmission = false;
             }
-            
-        }
 
-        //Keyboard controlled
-        if (Input.GetMouseButtonDown(0))
-        {
-            touch_start = Input.mousePosition;
         }
-        if (Input.GetMouseButtonUp(0))
+        else
         {
-            touch_end = Input.mousePosition;
-            createLine();
+
+            if (Input.GetMouseButton(0)) {
+                particles.enableEmission = true;
+                Vector2 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                particles.transform.position = position;
+            }
+
+            //Keyboard controlled
+            if (Input.GetMouseButtonDown(0))
+            {
+                touch_start = Input.mousePosition;
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                touch_end = Input.mousePosition;
+                createLine();
+                particles.enableEmission = false;
+            }
         }
     }
 
@@ -146,11 +170,11 @@ public class Tricks : MonoBehaviour
         movement_script.enabled = true;
         body.freezeRotation = true;
         trick_mode = false;
+
+        while (body.rotation >= 360) body.rotation -= 360;
+        while (body.rotation <= -360) body.rotation += 360;
+        if (body.rotation >= 180) body.rotation -= 360;
+        if (body.rotation <= -180) body.rotation += 360;
     }
 
-    //For debugging purposes only
-    void OnGUI()
-    {
-        //GUI.Label(new Rect(200, 10, 1000, 100), "Tricks Debug:\n" + touch_start + " " + touch_end + "\n" + draw + " " + vertical_swipe + " " + horizontal_swipe);
-    }
 }
